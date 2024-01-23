@@ -11,7 +11,7 @@
 @endsection
 
 @section ("body")
-    <form action="#" method="post" class="login-form">
+    <form action="{{ route("login.validate")  }}" method="post" class="login-form">
         <img src= "{{ asset("images/icon.png") }}" alt="icon de site">
 
         <div>
@@ -22,7 +22,7 @@
 
         <div class="input-container">
             <i class="fa-solid fa-envelope"></i>
-            <input type="email" placeholder="email" name="email" required>
+            <input type="email" placeholder="email" name="email" required value="{{ old("email")  }}">
         </div>
 
         <div class="input-container">
