@@ -1,0 +1,39 @@
+@import url("/css/form.css");
+
+.login-form {
+    width: 500px;
+    max-width: 90%;
+    margin: 70px auto auto;
+    background-color: var(--body-up-color);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-form img {
+    width: 62px;
+    margin-top: 35px;
+}
+
+.login-form h2, .login-form p {
+    text-align: center;
+}
+
+.login-form h2{
+    margin: 0;
+}
+
+.login-form p{
+    margin-top: 40px;
+}
+
+.login-form a {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.login-form .special-button{
+    margin-top: 10px;
+}

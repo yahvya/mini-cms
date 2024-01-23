@@ -1,0 +1,19 @@
+.special-button{
+    border: solid 1px var(--body-special-color);
+    background-color: var(--body-special-color);
+    color: var(--up-body-color);
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.special-button.filled-one{
+    width: var(--width);
+    max-width: 90%;
+}
+
+
+.special-button:hover{
+    opacity: 0.8;
+}

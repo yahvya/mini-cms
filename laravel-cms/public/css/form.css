@@ -1,0 +1,19 @@
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 9px;
+    gap: 20px;
+    background-color: var(--body-up-special-color);
+    border-radius: 3px;
+    font-family: "Roboto Condensed",sans-serif;
+}
+
+.input-container input {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    width: 300px;
+    max-width: 90%;
+    height: 30px;
+}
