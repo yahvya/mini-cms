@@ -1,0 +1,3 @@
+class HorizontalMenu extends ComponentChildren{
+
+}

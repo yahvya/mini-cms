@@ -1,0 +1,3 @@
+class VerticalMenu extends ComponentChildren{
+
+}

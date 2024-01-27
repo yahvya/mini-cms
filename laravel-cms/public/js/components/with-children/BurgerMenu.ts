@@ -1,0 +1,3 @@
+class BurgerMenu extends ComponentChildren{
+
+}
