@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\Factory;
@@ -8,9 +9,7 @@ use Illuminate\View\View;
 //liens de connexion
 Route::prefix("/connexion")->group(function():void {
     Route::view("/", "login/login")->name("login.login");
-    Route::post("/confirm",function(){
-        return "confirmation de connexion";
-    })->name("login.validate");
+    Route::post("/confirm",[LoginController::class,"validateLogin"])->name("login.validate");
 });
 
 //liens d'inscription

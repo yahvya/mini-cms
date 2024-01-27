@@ -18,6 +18,12 @@
             <h2>Mini cms</h2>
 
             <p>Pas de compte ? <a href="{{ route("register.register")  }}">Inscrivez-vous</a></p>
+
+            @if(Session::has("login-error") )
+                <p>{{ Session::get("login-error") }}</p>
+            @elseif($errors->any() )
+                <p>Veuillez remplir tous les champs du formulaire</p>
+            @endif
         </div>
 
         <div class="input-container">
