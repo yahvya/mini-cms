@@ -1,0 +1,29 @@
+{
+    page{
+        type: horizontal,
+        children: [
+            {
+                type: vertical-menu,
+                children: [
+                    {
+                        type: link,
+                        child: "Accueil"
+                    }
+                ]
+            },
+            {
+                type: vertical,
+                children: [
+                    {
+                        type: heading-one,
+                        child: "Titre"
+                    },
+                    {
+                        type: heading-two,
+                        child: "Sous titre"
+                    }
+                ]
+            }
+        ]
+    }
+}
