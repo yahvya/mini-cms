@@ -1,7 +1,10 @@
+import {BasicComponent} from "../../BasicComponent.js";
+import {Component} from "../../Component.js";
+
 /**
  * représente une image
  */
-class Images extends BasicComponent{
+export class Images extends BasicComponent{
     /**
      * lien de l'image
      * @protected
@@ -43,5 +46,21 @@ class Images extends BasicComponent{
         parent.append(this.htmlElement);
 
         return this.htmlElement;
+    }
+
+    /**
+     * met à jour le lien de l'image
+     * @param src le lien de l'image
+     */
+    public setSrc(src:string):void{
+        this.src = src;
+    }
+
+    /**
+     * met à jour le texte alternatif
+     * @param alt le texte alternatif
+     */
+    public setAlt(alt:string){
+        this.alt = alt;
     }
 }

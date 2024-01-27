@@ -1,19 +1,21 @@
+import {Component} from "./Component.js";
+
 /**
  * classe avec des sous composants
  */
-abstract class ComponentChildren extends Component{
+export abstract class ComponentChildren extends Component{
     /**
      * Contient une liste des composants
      * @protected
      */
-    protected children: Array<Component>|undefined;
+    protected children: Array<Component> = [];
 
     /**
      * ajoute un enfant à la liste des enfants
      * @param toAdd le composant à ajouter
      */
-    public addChild(toAdd:Component):ComponentChildren{
-        this.children!.push(toAdd);
+    public addChild(...toAdd:Array<Component>):ComponentChildren{
+        this.children!.push(...toAdd);
 
         return this;
     }

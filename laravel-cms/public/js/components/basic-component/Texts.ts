@@ -1,7 +1,10 @@
+import {BasicComponent} from "../../BasicComponent.js";
+import {Component} from "../../Component.js";
+
 /**
  * Le texte de notre composant paragraphe
  */
-class Texts extends BasicComponent{
+export class Texts extends BasicComponent{
     /**
      * Le texte que contient le paragraphe
      * @protected
@@ -36,6 +39,14 @@ class Texts extends BasicComponent{
         parent.append(this.htmlElement);
 
         return this.htmlElement;
+    }
+
+    /**
+     * met à jour le texte du paragraphe
+     * @param text le texte
+     */
+    public setText(text:string){
+        this.text = text;
     }
 
 }

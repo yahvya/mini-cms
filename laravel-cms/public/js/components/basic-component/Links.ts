@@ -1,7 +1,9 @@
+import {BasicComponent} from "../../BasicComponent.js";
+
 /**
  * format d'export du composant
  */
-interface LinkExportFormat{
+export interface LinkExportFormat{
     text: string,
     link: string,
     showPage: boolean,
@@ -11,7 +13,7 @@ interface LinkExportFormat{
 /**
  * Les liens de notre composant
  */
-class Links extends BasicComponent {
+export class Links extends BasicComponent {
     /**
      * le texte que contient le lien
      * @protected
@@ -68,6 +70,30 @@ class Links extends BasicComponent {
         parent.append(this.htmlElement);
 
         return this.htmlElement;
+    }
+
+    /**
+     * met à jour le lien associé
+     * @param link le lien
+     */
+    public setLink(link:string):void{
+        this.link = link;
+    }
+
+    /**
+     * met à jour le texte associé
+     * @param text le texte
+     */
+    public setText(text:string){
+        this.text = text;
+    }
+
+    /**
+     * met à jour status d'ouvertre
+     * @param showPage le status
+     */
+    public setShowPage(showPage:boolean){
+        this.showPage = showPage;
     }
 }
 

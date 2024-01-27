@@ -1,7 +1,9 @@
+import {BasicComponent} from "../../BasicComponent.js";
+
 /**
  * La classe title represente la balise html h
  */
-class Titles extends BasicComponent{
+export class Titles extends BasicComponent{
     /**
      * @protected texte que contient le titre
      */
@@ -38,6 +40,22 @@ class Titles extends BasicComponent{
         parent.append(this.htmlElement);
 
         return this.htmlElement;
+    }
+
+    /**
+     * met à jour le texte du paragraphe
+     * @param text le texte
+     */
+    public setText(text:string):void{
+        this.text = text;
+    }
+
+    /**
+     * met à jour le niveau de titre
+     * @param level le niveau
+     */
+    public setlevel(level:number):void{
+        this.level = level;
     }
 }
 

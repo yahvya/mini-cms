@@ -1,6 +1,7 @@
+import {Component} from "./Component.js";
 /**
  * Sous classe avec des composants
  */
-abstract class BasicComponent extends Component{
+export abstract class BasicComponent extends Component{
 
 }
