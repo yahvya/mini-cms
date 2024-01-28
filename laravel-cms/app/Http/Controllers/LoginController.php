@@ -23,7 +23,7 @@ class LoginController extends Controller
 
             $request->session()->put('wuser', $userDatas);
 
-            redirect()->route("");
+            return redirect()->route("admin.home");
         }
 
         Session::flash("login-error","Compte non trouvé");
