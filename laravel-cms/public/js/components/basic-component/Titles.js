@@ -1,4 +1,4 @@
-import { BasicComponent } from "../../BasicComponent.js";
+import { BasicComponent } from "../BasicComponent.js";
 /**
  * La classe title represente la balise html h
  */
@@ -22,7 +22,7 @@ export class Titles extends BasicComponent {
             componentName: this.name,
         };
     }
-    createFrom(component) {
+    createFrom(componentsMap, component) {
         this.text = component.text;
         this.level = component.level;
         return this;

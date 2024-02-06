@@ -1,4 +1,4 @@
-import {BasicComponent} from "../../BasicComponent.js";
+import {BasicComponent} from "../BasicComponent.js";
 
 /**
  * format d'export du composant
@@ -51,7 +51,7 @@ export class Links extends BasicComponent {
         };
     }
 
-    public createFrom(component:Record<any, any>):Links{
+    public createFrom(componentsMap:Record<string,Function>,component:Record<any, any>):Links{
         this.text = component.text;
         this.link = component.link;
         this.showPage = component.showPage;

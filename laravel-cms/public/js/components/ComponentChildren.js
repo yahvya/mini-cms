@@ -30,8 +30,8 @@ export class ComponentChildren extends Component {
             children: this.children.map(child => child.exportComponent())
         };
     }
-    createFrom(component) {
-        this.children = component.children.map((child) => Component.createComponent(child.componentName, child));
+    createFrom(componentsMap, component) {
+        this.children = component.children.map((child) => Component.createComponent(componentsMap, child.componentName, child));
         return this;
     }
     drawing(parent) {

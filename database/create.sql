@@ -1,8 +1,5 @@
--- SQLBook: Code
-DROP DATABASE IF EXISTS projet_cms;
-
-CREATE DATABASE projet_cms;
-
+DROP DATABASE IF EXISTS projet_cms;
+CREATE DATABASE projet_cms;;
 USE projet_cms;
 CREATE TABLE wuser(
    id INT AUTO_INCREMENT,
@@ -17,6 +14,7 @@ CREATE TABLE wuser(
 CREATE TABLE website(
    id INT AUTO_INCREMENT,
    site_config_file_path VARCHAR(255)  NOT NULL,
+   website_name VARCHAR(30)  NOT NULL,
    user_id INT NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(user_id) REFERENCES wuser(id)

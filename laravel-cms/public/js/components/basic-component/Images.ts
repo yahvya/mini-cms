@@ -1,5 +1,5 @@
-import {BasicComponent} from "../../BasicComponent.js";
-import {Component} from "../../Component.js";
+import {BasicComponent} from "../BasicComponent.js";
+import {Component} from "../Component.js";
 
 /**
  * représente une image
@@ -30,7 +30,7 @@ export class Images extends BasicComponent{
         };
     }
 
-    public createFrom(component: Record<any, any>): Component {
+    public createFrom(componentsMap:Record<string,Function>,component: Record<any, any>): Component {
         this.src = component.src;
         this.alt = component.alt;
 

@@ -1,0 +1,42 @@
+#page{
+    gap: 5%;
+}
+
+.Components,
+.history{
+    width: 20%;
+    background-color: var(--body-up-color);
+}
+
+.page-result{
+    width: 50%;
+}
+
+.Together{
+    width: 95%;
+    gap: 20px;
+    background-color: var(--body-up-special-color);
+    border: dashed 1px var(--body-special-color);
+    cursor: grab;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.Together p{
+    width: 90%;
+}
+
+.Components .search{
+    height: 35px;
+    width: 95%;
+    border-radius: 5px;
+    color: var(--body-up-color);
+    outline: none;
+}
+
+.Components > *{
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 12px;
+}

@@ -1,5 +1,5 @@
-import {BasicComponent} from "../../BasicComponent.js";
-import {Component} from "../../Component.js";
+import {BasicComponent} from "../BasicComponent.js";
+import {Component} from "../Component.js";
 
 /**
  * Le texte de notre composant paragraphe
@@ -21,7 +21,7 @@ export class Texts extends BasicComponent{
         }
     }
 
-    public createFrom(component:Record<any, any>):Component{
+    public createFrom(componentsMap:Record<string,Function>,component:Record<any, any>):Component{
         this.text= component.text;
 
         return this;

@@ -1,4 +1,4 @@
-import {BasicComponent} from "../../BasicComponent.js";
+import {BasicComponent} from "../BasicComponent.js";
 
 /**
  * La classe title represente la balise html h
@@ -26,7 +26,7 @@ export class Titles extends BasicComponent{
 
     }
 
-    public createFrom(component:Record<any, any>):Titles{
+    public createFrom(componentsMap:Record<string,Function>,component:Record<any, any>):Titles{
         this.text= component.text;
         this.level = component.level;
 

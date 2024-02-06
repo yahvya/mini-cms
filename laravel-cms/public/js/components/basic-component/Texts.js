@@ -1,4 +1,4 @@
-import { BasicComponent } from "../../BasicComponent.js";
+import { BasicComponent } from "../BasicComponent.js";
 /**
  * Le texte de notre composant paragraphe
  */
@@ -18,7 +18,7 @@ export class Texts extends BasicComponent {
             componentName: this.name,
         };
     }
-    createFrom(component) {
+    createFrom(componentsMap, component) {
         this.text = component.text;
         return this;
     }

@@ -24,3 +24,15 @@ body{
     font-family: "Montserrat","Roboto Condensed","Poppins","Arial","sans-serif";
     font-size: 15px;
 }
+
+/*apparition smooth*/
+.smooth-appear{
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.5s,transform 0.5s;
+}
+
+.smooth-appear.visible{
+    opacity: 1;
+    transform: none;
+}

@@ -1,4 +1,4 @@
-import { BasicComponent } from "../../BasicComponent.js";
+import { BasicComponent } from "../BasicComponent.js";
 /**
  * représente une image
  */
@@ -24,7 +24,7 @@ export class Images extends BasicComponent {
             alt: this.alt
         };
     }
-    createFrom(component) {
+    createFrom(componentsMap, component) {
         this.src = component.src;
         this.alt = component.alt;
         return this;

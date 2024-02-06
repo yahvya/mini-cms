@@ -38,8 +38,8 @@ export abstract class ComponentChildren extends Component{
         };
     }
 
-    public createFrom(component:Record<any, any>):Component{
-        this.children = component.children.map((child:Record<any, any>) => Component.createComponent(child.componentName,child) );
+    public createFrom(componentsMap:Record<string,Function>,component:Record<any, any>):Component{
+        this.children = component.children.map((child:Record<any, any>) => Component.createComponent(componentsMap,child.componentName,child) );
 
         return this;
     }

@@ -1,4 +1,4 @@
-import { BasicComponent } from "../../BasicComponent.js";
+import { BasicComponent } from "../BasicComponent.js";
 /**
  * Les liens de notre composant
  */
@@ -34,7 +34,7 @@ export class Links extends BasicComponent {
             componentName: this.name
         };
     }
-    createFrom(component) {
+    createFrom(componentsMap, component) {
         this.text = component.text;
         this.link = component.link;
         this.showPage = component.showPage;
