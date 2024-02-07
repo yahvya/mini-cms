@@ -70,4 +70,18 @@ export class Links extends BasicComponent {
     setShowPage(showPage) {
         this.showPage = showPage;
     }
+    askContent(toExecOnValidate) {
+        const modal = this.getModel();
+        const contente = modal.querySelector(".content");
+        contente.innerHTML = `
+            <div class="input-container">
+                <input type="text" placeholder="Rentrer votre lien"/>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="Rentrer votre texte"/>
+            </div>
+
+        `;
+        document.body.append(modal);
+    }
 }

@@ -8,13 +8,16 @@
 
 @section("js")
     <script src=" {{asset("js/site-manager/site.js")}}" defer type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 @endsection
 
 @section("body")
-    <div id="page" class="flex-row">
+    <div id="page-container" class="flex-row">
         <div class="Components flex-column align-center">
             <input class="search" type="Text" placeholder="Choisir un composant">
         </div>
+
 
         <div class="page-result"></div>
 

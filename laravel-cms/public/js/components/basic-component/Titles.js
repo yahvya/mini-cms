@@ -47,4 +47,30 @@ export class Titles extends BasicComponent {
     setlevel(level) {
         this.level = level;
     }
+    askContent(toExecOnValidate) {
+        const modal = this.getModel();
+        const contente = modal.querySelector(".content");
+        contente.innerHTML = `
+            <div class="input-container">
+                <input type="text" name="nom" placeholder="Entrer vorte texte"/>
+            </div>
+             <div class="input-container">
+                <select name="Titre">
+                    <option value="1">H1</option>
+                    <option value="2">H2</option>
+                    <option value="3">h3</option>
+                    <option value="4">h4</option>
+                </select>
+            </div>
+        `;
+        modal.addEventListener("submit", () => {
+            const text = contente.querySelector("input[name=nom]");
+            this.text = text.value;
+            const level = contente.querySelector("select[name=Titre]");
+            this.level = parseInt(level.options[level.selectedIndex].value);
+            this.closeModal(modal);
+            toExecOnValidate();
+        });
+        document.body.append(modal);
+    }
 }

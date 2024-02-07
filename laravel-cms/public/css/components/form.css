@@ -9,11 +9,16 @@
     font-family: "Roboto Condensed",sans-serif;
 }
 
-.input-container input {
+.input-container input, .input-container select{
     outline: none;
     background-color: transparent;
     border: none;
     width: 300px;
     max-width: 90%;
     height: 30px;
+    color: inherit;
+}
+
+.input-container select option{
+    color: var(--body-up-color);
 }

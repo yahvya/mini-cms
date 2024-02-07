@@ -40,4 +40,20 @@ export class Texts extends BasicComponent {
     setText(text) {
         this.text = text;
     }
+    askContent(toExecOnValidate) {
+        const modal = this.getModel();
+        const contente = modal.querySelector(".content");
+        contente.innerHTML = `
+            <div class="input-container">
+                <input type="text" placeholder="Entrer vorte texte" name="Texte"/>
+            </div>
+        `;
+        modal.addEventListener("submit", () => {
+            const textInput = contente.querySelector("input[name=Texte]");
+            this.text = textInput.value;
+            this.closeModal(modal);
+            toExecOnValidate();
+        });
+        document.body.append(modal);
+    }
 }
