@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use \Closure;
 
 class AuthMiddleware{
-    public function handle(Request $request,Closure $next):Response{
+    public function handle(Request $request,Closure $next):mixed{
         if(!$request->session()->has("wuser") ) return redirect()->route("login.login");
 
         return $next($request);
