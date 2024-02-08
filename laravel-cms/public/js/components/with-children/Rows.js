@@ -6,7 +6,10 @@ export class Rows extends ComponentChildren {
     }
     drawing(parent) {
         this.htmlElement = document.createElement("div");
-        this.htmlElement.classList.add("flex-row");
+        this.htmlElement.classList.add("flex-row", "Line","justify-around");
         return super.drawing(parent);
+    }
+    askContent(toExecOnValidate) {
+        toExecOnValidate();
     }
 }

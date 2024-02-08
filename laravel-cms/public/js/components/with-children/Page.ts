@@ -15,4 +15,9 @@ import {ComponentChildren} from "../ComponentChildren.js";
 
         return super.drawing(parent);
     }
+
+    public askContent(toExecOnValidate: Function): void {
+        toExecOnValidate();
+        
+    }
 }

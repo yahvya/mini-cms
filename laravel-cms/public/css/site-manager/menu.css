@@ -1,0 +1,5 @@
+@import "./classes.css";
+
+.Line,.Column{
+    gap: 30px;
+}

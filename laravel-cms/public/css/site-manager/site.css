@@ -1,4 +1,5 @@
 @import url("/css/components/form.css");
+@import "./menu.css";
 
 #page-container{
     gap: 5%;
@@ -48,7 +49,7 @@
 
 #page{
     min-height: 400px;
-    border: solid 1px red;
+    border: solid 1px var(--body-special-color);
 }
 
 .modal {
@@ -69,4 +70,17 @@
 
 .modal .input-container{
     margin-bottom: 20px;
+}
+
+
+#page:not(.preview) *{
+    border: solid 1px var(--body-special-color);
+    
+}
+
+
+.Line,.Column{
+    min-height: 30px;
+    min-width: 70px;
+    padding: 20px;
 }

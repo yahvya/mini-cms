@@ -15,7 +15,7 @@
 @section("body")
     <div id="page-container" class="flex-row">
         <div class="Components flex-column align-center">
-            <input class="search" type="Text" placeholder="Choisir un composant">
+            <input class="search" type="Text" placeholder="Choisir un composant" autocomplete="off">
         </div>
 
 

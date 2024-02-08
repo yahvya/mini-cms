@@ -39,4 +39,7 @@ export class ComponentChildren extends Component {
         parent.append(this.htmlElement);
         return this.htmlElement;
     }
+    ifComponentChild() {
+        return true;
+    }
 }

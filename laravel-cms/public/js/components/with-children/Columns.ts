@@ -8,8 +8,13 @@ export class Columns extends ComponentChildren{
 
     drawing(parent: HTMLElement): HTMLElement {
         this.htmlElement=document.createElement("div");
-        this.htmlElement.classList.add("lex-column");
+        this.htmlElement.classList.add("flex-column","Column");
         return super.drawing(parent);
+    }
+
+    public askContent(toExecOnValidate: Function): void {
+        toExecOnValidate();
+        
     }
 
 }

@@ -4,12 +4,6 @@ import {Component} from "./Component.js";
  */
 export abstract class BasicComponent extends Component{
     /**
-     * fonction qui permet de demander ce qu'on peut mettre dans le composant
-     * @param toExecOnValidate action à faire à la validation de la création
-     */
-    public abstract askContent(toExecOnValidate:Function): void;
-
-    /**
      * sert a creer un model qui sera afficher dans la page
      * @return Retourne le model html
      */
@@ -42,4 +36,8 @@ export abstract class BasicComponent extends Component{
             modal.remove();
         });
     }
+    public ifComponentChild(): boolean {
+        return false;
+    }
+    
 }

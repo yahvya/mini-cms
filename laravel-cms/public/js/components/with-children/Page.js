@@ -12,4 +12,7 @@ export class Page extends ComponentChildren {
         this.htmlElement.id = "page";
         return super.drawing(parent);
     }
+    askContent(toExecOnValidate) {
+        toExecOnValidate();
+    }
 }

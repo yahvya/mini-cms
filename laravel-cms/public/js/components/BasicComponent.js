@@ -34,4 +34,7 @@ export class BasicComponent extends Component {
             modal.remove();
         });
     }
+    ifComponentChild() {
+        return false;
+    }
 }

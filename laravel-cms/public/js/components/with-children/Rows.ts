@@ -8,8 +8,13 @@ export class Rows extends ComponentChildren{
 
     drawing(parent: HTMLElement): HTMLElement {
         this.htmlElement= document.createElement("div");
-        this.htmlElement.classList.add("flex-row");
+        this.htmlElement.classList.add("flex-row","Line");
+
         return super.drawing(parent);
+    }
+    public askContent(toExecOnValidate: Function): void {
+        toExecOnValidate();
+        
     }
 
 }

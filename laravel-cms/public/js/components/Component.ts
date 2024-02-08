@@ -15,6 +15,12 @@ export abstract class Component {
     protected htmlElement:any;
 
     /**
+     * fonction qui permet de demander ce qu'on peut mettre dans le composant
+     * @param toExecOnValidate action à faire à la validation de la création
+     */
+    public abstract askContent(toExecOnValidate:Function): void;
+
+    /**
      * methode pour exporter le composant
      */
     public abstract exportComponent() : Record<any, any>;
@@ -43,4 +49,10 @@ export abstract class Component {
     public static createComponent(componentsMap:Record<string,Record<string,any> >,component:string,componentConfig:Record<any, any>):Component|null{
         return component in componentsMap ? componentsMap[component].create(componentConfig,componentsMap) : null;
     }
+    /**
+     *  @return si le composant n'a pas d'enfant
+     */
+
+    public abstract  ifComponentChild():boolean;
+
  }

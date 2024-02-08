@@ -52,4 +52,8 @@ export abstract class ComponentChildren extends Component{
 
         return this.htmlElement!;
     }
+    public ifComponentChild(): boolean {
+        return true;
+        
+    }
 }
