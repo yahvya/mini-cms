@@ -1,5 +1,7 @@
-DROP DATABASE IF EXISTS projet_cms;
-CREATE DATABASE projet_cms;;
+DROP DATABASE IF EXISTS projet_cms;
+
+CREATE DATABASE projet_cms;
+
 USE projet_cms;
 CREATE TABLE wuser(
    id INT AUTO_INCREMENT,

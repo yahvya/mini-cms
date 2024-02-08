@@ -75,13 +75,21 @@ export class Links extends BasicComponent {
         const contente = modal.querySelector(".content");
         contente.innerHTML = `
             <div class="input-container">
-                <input type="text" placeholder="Rentrer votre lien"/>
+                <input type="text" name="link" placeholder="Rentrer votre lien"/>
             </div>
             <div class="input-container">
-                <input type="text" placeholder="Rentrer votre texte"/>
+                <input type="text" name="texte" placeholder="Rentrer votre texte"/>
             </div>
 
         `;
+        modal.addEventListener("submit", () => {
+            const linkInput = contente.querySelector("input[name=link]");
+            const textInput = contente.querySelector("input[name=texte]");
+            this.link = linkInput.value;
+            this.text = textInput.value;
+            this.closeModal(modal);
+            toExecOnValidate();
+        });
         document.body.append(modal);
     }
 }

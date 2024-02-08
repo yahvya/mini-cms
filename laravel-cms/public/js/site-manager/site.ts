@@ -24,6 +24,8 @@ for( const ComponentList in ComponentsMap["ComponentsMap"] ) {
         drop: function(event,ui){
             const component = ComponentsMap["ComponentsMap"][ui.draggable.text()]["basic-create"]();
 
+            pageComponents.addChild(component);
+
             component.askContent(() => {
                 component.drawing($(this) );
             });
