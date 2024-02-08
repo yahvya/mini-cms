@@ -2,4 +2,10 @@
 
 .Line,.Column{
     gap: 30px;
+    flex-wrap: wrap;
+}
+
+.special-image{
+    width: 250px ;
+    max-width: 95%;
 }

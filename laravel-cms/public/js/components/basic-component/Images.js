@@ -33,6 +33,7 @@ export class Images extends BasicComponent {
         this.htmlElement = document.createElement("img");
         this.htmlElement.src = this.src;
         this.htmlElement.alt = this.alt;
+        this.htmlElement.classList.add("special-image");
         parent.append(this.htmlElement);
         return this.htmlElement;
     }
@@ -59,7 +60,7 @@ export class Images extends BasicComponent {
             </div>
 
             <div class="input-container">
-                <input type="file" name="crc" accept="jpeg,png"/>
+                <input type="file" name="crc" accept="image/*"/>
             </div>
 
             <p class="text-center">Ou</p>
@@ -74,12 +75,19 @@ export class Images extends BasicComponent {
             this.alt = alt.value;
             const src = contente.querySelector("input[name=src]");
             if (src.value.length == 0) {
+                var reader = new FileReader();
+                const fileSelector = contente.querySelector("input[name=crc]");
+                reader.readAsDataURL(fileSelector.files[0]);
+                reader.onload = () => {
+                    this.src = reader.result;
+                    toExecOnValidate();
+                };
             }
             else {
                 this.src = src.value;
+                toExecOnValidate();
             }
             this.closeModal(modal);
-            toExecOnValidate();
         });
         document.body.append(modal);
     }
