@@ -27,6 +27,9 @@ Route::prefix("/admin")->middleware(AuthMiddleware::class)->group(function(){
     Route::get("/",[SlideController::class,"showWebsites"])->name("admin.home");
     Route::get("/Nouveau-site",[SlideController::class, "NewWebSite"])->name("admin.new-website");
     Route::post("/Mon-site",[SlideController::class,"validateSite"])->name("mon-site");
+    Route::get("/gestion/{websiteId}",[SlideController::class,"manageSite"])->name("admin.manage")->where([
+        "websiteId" => "[0-9]+"
+    ]);
 
 });
 
