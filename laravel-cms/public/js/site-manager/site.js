@@ -5,7 +5,16 @@ const searchInput = document.querySelector(".Components .search");
 const searchComponent = {};
 const pageComponents = new Page();
 const componentHistory = [pageComponents];
-const page = pageComponents.drawing(document.querySelector(".page-result"));
+const pageTitleContainer = document.querySelector("input[name=page-title]");
+const pageLinkContainer = document.querySelector("input[name=page-link]");
+// donnée finale du site
+const site = {
+    articleTemplate: null,
+    pages: []
+};
+// le type de page à définir
+let isArticleTemplate = true;
+const page = pageComponents.drawing(document.querySelector(".page-result div"));
 page.addEventListener("mousedown", () => {
     page.classList.add("preview");
 });
@@ -49,6 +58,37 @@ searchInput.addEventListener("input", () => {
             searchComponent[componentName].remove();
     }
 });
+// évenement de validation d'une page crée
+document.querySelector(".validate-page").addEventListener("click", () => {
+    const pageDatas = {
+        "title": pageTitleContainer.value,
+        "page-content": pageComponents.exportComponent()
+    };
+    if (isArticleTemplate) {
+        pageDatas["pageLink"] = pageLinkContainer.value;
+        site.pages.push(pageDatas);
+    }
+    else
+        site.articleTemplate = pageDatas;
+    resetPageCreation();
+});
+// évenements de changement d'actions
+document.querySelector(".define-article-template").addEventListener("click", () => {
+    isArticleTemplate = true;
+    resetPageCreation();
+});
+document.querySelector(".add-page").addEventListener("click", () => {
+    isArticleTemplate = false;
+    resetPageCreation();
+});
+// évenement de validation du site
+document.querySelector(".validate-site").addEventListener("click", () => {
+    if (site.articleTemplate == null) {
+        alert("Veuillez définir le template des articles");
+        return;
+    }
+    console.log(site);
+});
 /**
  *  crée la configuration d'un élement droppable
  * @returns la configuration
@@ -65,7 +105,7 @@ function createDroppable() {
                 componentHistory[parseInt($(this).data("index"))].addChild(component);
                 // sauvegarde du composant pour l'historique
                 componentHistory.push(component);
-                // dessin du composant 
+                // dessin du composant
                 const drawedComponent = component.drawing($(this));
                 drawedComponent.setAttribute("data-index", `${componentHistory.length - 1}`);
                 if (component.ifComponentChild()) {
@@ -75,4 +115,15 @@ function createDroppable() {
             });
         }
     };
+}
+/**
+ * remet à zéro les données de page
+ */
+function resetPageCreation() {
+    pageLinkContainer.value = "";
+    pageTitleContainer.value = "";
+    // on vide le composant page
+    pageComponents.clearChildren();
+    // on vide la page
+    Array.from(page.children).forEach(child => child.remove());
 }

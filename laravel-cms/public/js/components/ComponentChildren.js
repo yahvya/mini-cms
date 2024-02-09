@@ -16,6 +16,12 @@ export class ComponentChildren extends Component {
         this.children.push(...toAdd);
         return this;
     }
+    /**
+     * vide les enfants de la class
+     */
+    clearChildren() {
+        this.children = [];
+    }
     removeChild(toRemove) {
         const index = this.children.indexOf(toRemove);
         if (index != -1) {

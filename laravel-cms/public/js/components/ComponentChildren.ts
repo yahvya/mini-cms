@@ -20,6 +20,13 @@ export abstract class ComponentChildren extends Component{
         return this;
     }
 
+    /**
+     * vide les enfants de la class
+     */
+    public clearChildren():void{
+        this.children = [];
+    }
+
     public removeChild(toRemove:Component):ComponentChildren{
         const index = this.children!.indexOf(toRemove);
 
@@ -54,6 +61,6 @@ export abstract class ComponentChildren extends Component{
     }
     public ifComponentChild(): boolean {
         return true;
-        
+
     }
 }
