@@ -64,7 +64,7 @@ document.querySelector(".validate-page").addEventListener("click", () => {
         "title": pageTitleContainer.value,
         "page-content": pageComponents.exportComponent()
     };
-    if (isArticleTemplate) {
+    if (!isArticleTemplate) {
         pageDatas["pageLink"] = pageLinkContainer.value;
         site.pages.push(pageDatas);
     }

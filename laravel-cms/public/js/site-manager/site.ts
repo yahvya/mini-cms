@@ -83,13 +83,12 @@ document.querySelector(".validate-page")!.addEventListener("click",() => {
         "page-content" : pageComponents.exportComponent()
     };
 
-    if(isArticleTemplate){
+    if(!isArticleTemplate){
         pageDatas["pageLink"] = pageLinkContainer.value;
 
         site.pages.push(pageDatas);
     }
-    else
-        site.articleTemplate = pageDatas;
+    else site.articleTemplate = pageDatas;
 
     resetPageCreation();
 });

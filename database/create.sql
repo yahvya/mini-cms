@@ -1,7 +1,5 @@
-DROP DATABASE IF EXISTS projet_cms;
-
-CREATE DATABASE projet_cms;
-
+DROP DATABASE IF EXISTS projet_cms;
+CREATE DATABASE projet_cms;;
 USE projet_cms;
 CREATE TABLE wuser(
    id INT AUTO_INCREMENT,
@@ -20,4 +18,12 @@ CREATE TABLE website(
    user_id INT NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(user_id) REFERENCES wuser(id)
+);
+
+CREATE TABLE articles(
+   id INT AUTO_INCREMENT,
+   contenu JSON NOT NULL,
+   id_1 INT NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_1) REFERENCES website(id)
 );
