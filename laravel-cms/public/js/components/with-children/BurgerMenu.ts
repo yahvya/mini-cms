@@ -1,11 +1,28 @@
-import {HorizontalMenu} from "./HorizontalMenu.js";
+import { ComponentChildren } from "../ComponentChildren.js";
 
-export class BurgerMenu extends HorizontalMenu{
+export class BurgerMenu extends ComponentChildren{
+    public askContent(toExecOnValidate: Function): void {
+        toExecOnValidate();
+    }
+    
     public drawing(parent: HTMLElement): HTMLElement {
-        const tag = super.drawing(parent);  
+        this.htmlElement= document.createElement("div");
+        this.htmlElement.classList.add("flex-row","Line");
 
-        tag.classList.add("burger-menu");
+        const burger= document.createElement("div");
 
-        return tag;
+        burger.classList.add("burger-menu");
+        burger.innerHTML= `
+        <input type="checkbox" id="bg-menu" autocomplete="off">
+
+        <label for="bg-menu" class="flex-column align-center justify-center">
+    
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>`;
+        burger.append(this.htmlElement);
+        parent.append(burger);
+        return this.htmlElement;
     }
 }

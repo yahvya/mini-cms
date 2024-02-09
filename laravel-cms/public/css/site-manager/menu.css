@@ -9,3 +9,34 @@
     width: 250px ;
     max-width: 95%;
 }
+.flex-row, .Line{
+    flex-direction: row;
+}
+
+.burger-menu label{
+    height: 40px;
+    width: 40px;
+    gap: 5px;
+}
+.burger-menu label span{
+    display: block;
+    width: 70%;
+    height: 3px;
+    border-radius: 5px;
+    background-color: var(--body-special-color );
+}
+
+#bg-menu, .burger-menu label{
+    display: none;
+}
+
+@media screen and (max-width: 640px) {
+    .burger-menu .Line{
+        display: none!important;
+    }
+
+    .burger-menu label,
+    #bg-menu:checked ~ label ~ .Line{
+        display: flex !important;
+    }
+}
