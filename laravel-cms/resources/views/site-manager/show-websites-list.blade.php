@@ -21,6 +21,6 @@
             </div>
         @endforeach
 
-        <a href="{{route("admin3.home")}}" class="special-button">Créer un nouveau site</a>
+        <a href="{{route("admin.new-website")}}" class="special-button">Créer un nouveau site</a>
     </div>
 @endsection

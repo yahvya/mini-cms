@@ -25,7 +25,9 @@ Route::prefix("/inscription")->middleware(NotAuthMiddleware::class)->group(funct
 // liens d'administration des sites d'une personne
 Route::prefix("/admin")->middleware(AuthMiddleware::class)->group(function(){
     Route::get("/",[SlideController::class,"showWebsites"])->name("admin.home");
-        Route::get("/site-test-3",[SlideController::class, "NewWebSite"])->name("admin3.home");
+    Route::get("/Nouveau-site",[SlideController::class, "NewWebSite"])->name("admin.new-website");
+    Route::post("/Mon-site",[SlideController::class,"validateSite"])->name("mon-site");
+
 });
 
 // page 404 par défaut

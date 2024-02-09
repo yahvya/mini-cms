@@ -105,13 +105,21 @@ document.querySelector(".add-page")!.addEventListener("click",() => {
 });
 
 // évenement de validation du site
-document.querySelector(".validate-site")!.addEventListener("click",() => {
+const form:HTMLFormElement = document.querySelector(".actions-container")!;
+form.addEventListener("submit",(e) => {
     if(site.articleTemplate == null){
+        e.preventDefault();
         alert("Veuillez définir le template des articles");
         return;
     }
 
-    console.log(site)
+    const siteDataInput:HTMLInputElement = document.createElement("input");
+
+    siteDataInput.type = "hidden";
+    siteDataInput.name = "site";
+    siteDataInput.value = JSON.stringify(site);
+
+    form.append(siteDataInput);
 });
 
 

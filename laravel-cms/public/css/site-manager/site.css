@@ -92,10 +92,20 @@ div:has(#page){
     background-color: var(--body-up-color);
     padding: 10px;
     margin-bottom: 20px;
+}
+
+.actions-container,
+.actions-container .flex-row{
     gap: 20px;
 }
 
 
 .page-result .input-container{
     margin-bottom: 10px;
+}
+
+
+.input-container p{
+    width: 200px;
+    max-width: 90%;
 }
