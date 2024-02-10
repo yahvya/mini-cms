@@ -26,14 +26,30 @@ class SlideController extends Controller{
             "site"=>"required"
         ]);
 
-       // génération du nom du fichier unique
-       $filename = uniqid("/public/") . ".json";
-       $site1 = @json_decode($site["site"],true);
+        $siteFolder = uniqid();
+        Storage::makeDirectory("/public/{$siteFolder}");
+
+        // génération du nom du fichier unique
+        $filename = uniqid("/public/{$siteFolder}/") . ".json";
+        $site1 = @json_decode($site["site"],true);
         $site1["colors"] =  [
             "textColor" => $site["Text-color"],
             "Background"=>$site["Background-page"],
             "Separation-color"=>$site["Separation-color"]
         ];
+
+        // création de l'image du site
+        $image = imagecreatetruecolor(100,100);
+
+        imagefill($image, 0, 0,imagecolorallocate($image,255,255,255));
+
+        if(
+            !imagestring($image,5,5,5,$site["site-name"],0) ||
+            !imagepng($image,storage_path("/app/public/{$siteFolder}/site-image.png"))  
+        ){
+            Session::flash("login-error","Echec de création de l'image du site");
+            return redirect()->route("admin.new-website");
+        }
 
         Storage::put($filename,json_encode($site1,JSON_PRETTY_PRINT) );
         //creation du site
@@ -42,7 +58,7 @@ class SlideController extends Controller{
         $site2->website_name=$site["site-name"];
         $site2->user_id=$request->session()->get("wuser")["id"];
 
-        if(!$site2->save() ){
+        if(!$site2->save() ){ 
             Storage::delete($filename);
             Session::flash("login-error","Echec de création du site");
             return redirect()->route("admin.new-website");
@@ -60,10 +76,14 @@ class SlideController extends Controller{
             return redirect()->route("admin.new-website");
         }
 
+        die();
+
         return redirect()->route("admin.home");
     }
    public function NewWebSite() {
         return view("site-manager/site");
-
+    
     }
+
+ 
 }

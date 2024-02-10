@@ -1,5 +1,8 @@
-DROP DATABASE IF EXISTS projet_cms;
-CREATE DATABASE projet_cms;;
+-- Active: 1706002647885@@127.0.0.1@3306@projet_cms
+DROP DATABASE IF EXISTS projet_cms;
+
+CREATE DATABASE projet_cms;;
+
 USE projet_cms;
 CREATE TABLE wuser(
    id INT AUTO_INCREMENT,
