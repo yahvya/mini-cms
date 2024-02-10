@@ -1,7 +1,5 @@
-import {Component} from "../components/Component.js";
 import ComponentsMap from "../components/ComponentRegistration.js";
 import {Page} from "../components/with-children/Page.js";
-import componentsMap from "../components/ComponentRegistration.js";
 
 const componentsContainer = document.querySelector(".Components");
 const searchInput:HTMLInputElement = document.querySelector(".Components .search")!;
@@ -34,6 +32,8 @@ page.setAttribute("data-index","0");
 
 // affichage des composants
 for( const ComponentList in ComponentsMap["ComponentsMap"] ) {
+    if(ComponentList == "Page") continue;
+    
     const list= document.createElement("div");
 
     list.classList.add("Together","flex-row","align-center");

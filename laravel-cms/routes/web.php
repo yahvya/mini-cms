@@ -30,8 +30,12 @@ Route::prefix("/admin")->middleware(AuthMiddleware::class)->group(function(){
     Route::get("/gestion/{websiteId}",[SlideController::class,"manageSite"])->name("admin.manage")->where([
         "websiteId" => "[0-9]+"
     ]);
+    Route::post("/nouveau-artcile/{websiteId}",[SlideController:: class,"validateNewArticle"])->name("validateNewArticle")->where([
+        "websiteId" => "[0-9]+"
+    ]);
 
 });
+
 
 // page 404 par défaut
 Route::fallback(function():Factory|View{

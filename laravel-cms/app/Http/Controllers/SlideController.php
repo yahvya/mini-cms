@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\ArticleModel;
 use App\Models\UserModel;
 use App\Models\Website;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use PhpParser\NodeVisitor\FirstFindingVisitor;
 
 class SlideController extends Controller{
 
@@ -46,7 +48,7 @@ class SlideController extends Controller{
         ];
 
         // création de l'image du site
-        $image = imagecreatetruecolor(100,100);
+        $image = imagecreatetruecolor(10* count(str_split($site["site-name"])),50);
 
         imagefill($image, 0, 0,imagecolorallocate($image,255,255,255));
 
@@ -54,7 +56,7 @@ class SlideController extends Controller{
             !imagestring($image,5,5,5,$site["site-name"],0) ||
             !imagepng($image,storage_path("/app/public/{$siteFolder}/site-image.png"))  
         ){
-            Session::flash("login-error","Echec de création de l'image du site");
+            Session::flash("site-error","Echec de création de l'image du site");
             return redirect()->route("admin.new-website");
         }
 
@@ -67,7 +69,7 @@ class SlideController extends Controller{
 
         if(!$site2->save() ){ 
             Storage::delete($filename);
-            Session::flash("login-error","Echec de création du site");
+            Session::flash("site-error","Echec de création du site");
             return redirect()->route("admin.new-website");
         }
 
@@ -79,12 +81,9 @@ class SlideController extends Controller{
 
         if(!$article->save() ){
             Storage::delete($filename);
-            Session::flash("login-error","Echec de création de l'article");
+            Session::flash("site-error","Echec de création de l'article");
             return redirect()->route("admin.new-website");
         }
-
-        die();
-
         return redirect()->route("admin.home");
     }
 
@@ -94,6 +93,41 @@ class SlideController extends Controller{
    public function NewWebSite() {
         return view("site-manager/site");
 
+    }
+    public function manageSite($websiteId){
+        $article= ArticleModel::where(["id_1"=>"$websiteId"])->first();
+        if($article==null){
+            return redirect()->route("admin.home");
+        }
+        return view("site-manager/nouveau-article",[
+            "article"=>$article,
+            "websiteId"=>$websiteId
+        ]);
+    }
+    public function validateNewArticle(int $websiteId,Request $request){
+    
+        $site = $request->validate([
+            "title"=>"required",
+            "new-article"=>"required"
+        ]);
+
+
+        // création de l'article
+        $article = new ArticleModel();
+
+        $article->contenu = json_encode([
+            "title" =>$site["title"],
+            "page-content" => json_decode($site["new-article"],true)
+        ]);
+
+        $article->id_1 = $websiteId;
+
+        if(!$article->save() ){
+            Session::flash("site-error","Echec de création de l'article");
+            return redirect()->route("admin.new-website");
+        }
+        return "page des articles";
+        // return redirect()->route("admin.home");
     }
 
  

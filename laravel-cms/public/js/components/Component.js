@@ -19,6 +19,6 @@ export class Component {
      * @param componentConfig configuration du composant
      */
     static createComponent(componentsMap, component, componentConfig) {
-        return component in componentsMap ? componentsMap[component].create(componentConfig, componentsMap) : null;
+        return component in componentsMap ? componentsMap[component].creator(componentConfig, componentsMap) : null;
     }
 }

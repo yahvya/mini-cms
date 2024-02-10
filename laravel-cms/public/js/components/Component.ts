@@ -26,6 +26,11 @@ export abstract class Component {
     public abstract exportComponent() : Record<any, any>;
 
     /**
+     * défini le composantcomme pouvant être modifié
+     */
+    public abstract setAsUpdatable():void;
+
+    /**
      * tronsormer le fichier en composant
      * @param componentsMap map des composants
      * @param component bloc de composant de site
@@ -47,7 +52,7 @@ export abstract class Component {
      * @param componentConfig configuration du composant
      */
     public static createComponent(componentsMap:Record<string,Record<string,any> >,component:string,componentConfig:Record<any, any>):Component|null{
-        return component in componentsMap ? componentsMap[component].create(componentConfig,componentsMap) : null;
+        return component in componentsMap ? componentsMap[component].creator(componentConfig,componentsMap) : null;
     }
     /**
      *  @return si le composant n'a pas d'enfant

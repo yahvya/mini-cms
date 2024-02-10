@@ -6,6 +6,7 @@ import { Texts } from "./basic-component/Texts.js";
 import { Images } from "./basic-component/Images.js";
 import { Titles } from "./basic-component/Titles.js";
 import { HorizontalMenu } from "./with-children/HorizontalMenu.js";
+import { Page } from "./with-children/Page.js";
 import { VerticalMenu } from "./with-children/VerticalMenu.js";
 import { BurgerMenu } from "./with-children/BurgerMenu.js";
 import { Rows } from "./with-children/Rows.js";
@@ -56,7 +57,11 @@ const componentsMap = {
             "icon": "<i class=\"fa-solid fa-table-columns\"></i>",
             "creator": (componentConfig, componentsMap) => new Columns().createFrom(componentsMap, componentConfig),
             "basic-create": () => new Columns()
-        }
+        },
+        "Page": {
+            "creator": (componentConfig, componentsMap) => new Page().createFrom(componentsMap, componentConfig),
+            "basic-create": () => new Page()
+        },
     }
 };
 export default componentsMap;

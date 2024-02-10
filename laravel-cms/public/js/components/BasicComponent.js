@@ -37,4 +37,17 @@ export class BasicComponent extends Component {
     ifComponentChild() {
         return false;
     }
+    /**
+     * défini le contenu du composant comme pouvant être modifié
+     */
+    setAsUpdatable() {
+        this.htmlElement.addEventListener("click", () => {
+            this.askContent(() => {
+                const previousElement = this.htmlElement;
+                // dessin dans une balise qui n'apparait pas
+                this.drawing(document.createElement("div"));
+                previousElement.replaceWith(this.htmlElement);
+            });
+        });
+    }
 }

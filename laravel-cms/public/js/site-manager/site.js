@@ -25,6 +25,8 @@ page.addEventListener("mouseup", () => {
 page.setAttribute("data-index", "0");
 // affichage des composants
 for (const ComponentList in ComponentsMap["ComponentsMap"]) {
+    if (ComponentList == "Page")
+        continue;
     const list = document.createElement("div");
     list.classList.add("Together", "flex-row", "align-center");
     list.innerHTML = `<p>${ComponentList}</p>`;

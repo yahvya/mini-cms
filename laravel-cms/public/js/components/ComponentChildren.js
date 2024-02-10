@@ -48,4 +48,12 @@ export class ComponentChildren extends Component {
     ifComponentChild() {
         return true;
     }
+    /**
+     * change tous les enfants du composant comme pouvant être modifié
+     */
+    setAsUpdatable() {
+        this.children.forEach(child => {
+            child.setAsUpdatable();
+        });
+    }
 }

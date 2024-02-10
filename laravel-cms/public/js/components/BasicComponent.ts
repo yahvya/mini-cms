@@ -40,4 +40,19 @@ export abstract class BasicComponent extends Component{
         return false;
     }
     
+    /**
+     * défini le contenu du composant comme pouvant être modifié
+     */
+    public setAsUpdatable():void{
+        this.htmlElement.addEventListener("click",() => {
+            this.askContent(() => {
+                const previousElement = this.htmlElement;
+
+                // dessin dans une balise qui n'apparait pas
+                this.drawing(document.createElement("div") );
+                
+                previousElement.replaceWith(this.htmlElement);
+            });
+        });
+    }
 }

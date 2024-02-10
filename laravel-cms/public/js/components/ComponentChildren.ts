@@ -63,4 +63,13 @@ export abstract class ComponentChildren extends Component{
         return true;
 
     }
+
+    /**
+     * change tous les enfants du composant comme pouvant être modifié
+     */
+    public setAsUpdatable():void{
+        this.children!.forEach(child => {
+            child.setAsUpdatable();
+        } );
+    }
 }

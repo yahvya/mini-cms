@@ -13,6 +13,10 @@
 @endsection
 
 @section("body")
+    @if(Session::has("site-error") )
+        <p>{{ Session::get("site-error") }}</p>
+    @endif
+
     <form method="post" action="{{route("mon-site")}}" class="actions-container flex-column">
         <div class="input-container">
             <input type="text" name="site-name" placeholder="Entrez le nom du site" required>
@@ -34,8 +38,8 @@
         </div>
 
         <div class="flex-row justify-center align-center">
-            <button class="special-button define-article-template">Définir le template des articles</button>
-            <button class="special-button add-page">Ajouter une page</button>
+            <button type="button" class="special-button define-article-template">Définir le template des articles</button>
+            <button type="button" class="special-button add-page">Ajouter une page</button>
             <button class="special-button validate-site">Valider le site</button>
         </div>
 

@@ -7,6 +7,7 @@ import {Texts} from "./basic-component/Texts.js";
 import {Images} from "./basic-component/Images.js";
 import {Titles} from "./basic-component/Titles.js";
 import {HorizontalMenu} from "./with-children/HorizontalMenu.js";
+import {Page} from "./with-children/Page.js";
 import {VerticalMenu} from "./with-children/VerticalMenu.js";
 import {BurgerMenu} from "./with-children/BurgerMenu.js";
 import {Rows} from "./with-children/Rows.js";
@@ -18,7 +19,7 @@ const componentsMap:Record<string, Record<string, any>> = {
             "icon" : "<i class=\"fa-solid fa-link\"></i>",
             "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Links().createFrom(componentsMap,componentConfig),
 			"basic-create" : () => new Links()
-            },
+        },
         "Texte": {
             "icon" : "<i class=\"fa-solid fa-font\"></i>",
             "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Texts().createFrom(componentsMap,componentConfig),
@@ -58,8 +59,12 @@ const componentsMap:Record<string, Record<string, any>> = {
 		    "icon" : "<i class=\"fa-solid fa-table-columns\"></i>",
 		    "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Columns().createFrom(componentsMap,componentConfig),
 			"basic-create" : () => new Columns()
-        }
-        }
+        },
+        "Page": {
+            "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Page().createFrom(componentsMap,componentConfig),
+			"basic-create" : () => new Page()
+        },
+    }
 };
 
 export default componentsMap;

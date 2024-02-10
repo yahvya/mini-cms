@@ -1,0 +1,12 @@
+@import "./menu.css";
+@import "./modal.css";
+@import url("/css/components/form.css");
+
+#page{
+    padding : 30px;
+}
+
+.validation-button{
+    display: block;
+    margin: auto;
+}

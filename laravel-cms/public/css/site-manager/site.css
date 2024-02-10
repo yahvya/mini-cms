@@ -1,5 +1,6 @@
 @import url("/css/components/form.css");
 @import "./menu.css";
+@import "./modal.css";
 
 #page-container{
     gap: 5%;
@@ -52,32 +53,6 @@
     border: solid 1px var(--body-special-color);
 }
 
-.modal {
-    position : absolute;
-    top : 50%;
-    left : 50%;
-    transform: translate(-50%, -50%);
-    gap: 50px;
-    width: 500px;
-    max-width: 90%;
-    background-color: var(--body-up-color);
-    padding: 30px;
-}
-
-.modal i{
-    align-self: flex-end;
-}
-
-.modal .input-container{
-    margin-bottom: 20px;
-}
-
-
-#page:not(.preview) *{
-    border: solid 1px var(--body-special-color);
-
-}
-
 div:has(#page){
     margin-bottom: 15px;
 }
@@ -108,4 +83,9 @@ div:has(#page){
 .input-container p{
     width: 200px;
     max-width: 90%;
+}
+
+#page:not(.preview) *{
+    border: solid 1px var(--body-special-color);
+
 }
