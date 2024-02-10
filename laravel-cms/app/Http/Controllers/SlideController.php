@@ -94,7 +94,12 @@ class SlideController extends Controller{
         return view("site-manager/site");
 
     }
-    public function manageSite($websiteId){
+
+    /**
+     * Affiche la page de création d'un nouvel article
+     * @param int $websiteId l'id du site
+     */
+    public function createNewArticle($websiteId){
         $article= ArticleModel::where(["id_1"=>"$websiteId"])->first();
         if($article==null){
             return redirect()->route("admin.home");
@@ -104,6 +109,11 @@ class SlideController extends Controller{
             "websiteId"=>$websiteId
         ]);
     }
+
+    /**
+     * valide la création d'un nouvel article
+     * @param int $websiteId l'id du site
+     */
     public function validateNewArticle(int $websiteId,Request $request){
     
         $site = $request->validate([
@@ -130,5 +140,33 @@ class SlideController extends Controller{
         // return redirect()->route("admin.home");
     }
 
- 
+    /**
+     * affiche la liste des articles d'un site
+     * @param int $websiteId l'id du site
+     */
+    public function listeArticles($websiteId){
+        $website = Website::where(["id"=>$websiteId])->first();
+
+        if($website == null){
+            return redirect()->route("admin.home");
+        }
+        return view("site-manager/listeArticle",[
+            "Articles"=>$website->articles,
+            "websiteId" => $websiteId
+        ]);
+    }
+
+    /**
+     * supprime un article
+     * @param int $websiteId l'id du site
+     * @param int $articleId l'id de l'article
+     */
+    public function deleteArticle($websiteId,$articleId){
+        $article = ArticleModel::where(["id"=>$articleId,"id_1"=>$websiteId])->first();
+        if($article == null){
+            return redirect()->route("admin.home");
+        }
+        $article->delete();
+        return redirect()->route("listeArtciles",["websiteId"=>$websiteId]);
+    }
 }

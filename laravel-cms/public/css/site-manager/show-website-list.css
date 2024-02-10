@@ -24,3 +24,7 @@
     width: 80%;
     margin-bottom: 30px;
 }
+
+.website .flex-row{
+    gap: 10px;
+}

@@ -17,7 +17,7 @@
         @foreach($websites as $website)
             <div class="website flex-row justify-between">
                 <p>{{ $website->website_name }}</p>
-                <a href="{{  route("admin.manage",["websiteId" => $website->id]) }}" target="_blank" class="special-button">Gérer le site</a>
+                <a href="{{  route("listeArtciles",["websiteId" => $website->id]) }}" target="_blank" class="special-button">Gérer les articles</a>
             </div>
         @endforeach
 
