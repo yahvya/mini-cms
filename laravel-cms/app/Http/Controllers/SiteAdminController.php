@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use PhpParser\NodeVisitor\FirstFindingVisitor;
 
-class SlideController extends Controller{
+class SiteAdminController extends Controller{
 
     /**
      * affiche la liste des sites de la personne

@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\SlideController;
+use App\Http\Controllers\SiteAdminController;
+use App\Http\Controllers\SiteController;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\NotAuthMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -24,25 +25,38 @@ Route::prefix("/inscription")->middleware(NotAuthMiddleware::class)->group(funct
 
 // liens d'administration des sites d'une personne
 Route::prefix("/admin")->middleware(AuthMiddleware::class)->group(function(){
-    Route::get("/",[SlideController::class,"showWebsites"])->name("admin.home");
-    Route::get("/Nouveau-site",[SlideController::class, "NewWebSite"])->name("admin.new-website");
-    Route::post("/Mon-site",[SlideController::class,"validateSite"])->name("mon-site");
-    Route::get("/gestion/{websiteId}",[SlideController::class,"createNewArticle"])->name("admin.manage")->where([
+    Route::get("/",[SiteAdminController::class,"showWebsites"])->name("admin.home");
+    Route::get("/Nouveau-site",[SiteAdminController::class, "NewWebSite"])->name("admin.new-website");
+    Route::post("/Mon-site",[SiteAdminController::class,"validateSite"])->name("mon-site");
+    Route::get("/gestion/{websiteId}",[SiteAdminController::class,"createNewArticle"])->name("admin.manage")->where([
         "websiteId" => "[0-9]+"
     ]);
-    Route::post("/nouveau-article/{websiteId}",[SlideController:: class,"validateNewArticle"])->name("validateNewArticle")->where([
+    Route::post("/nouveau-article/{websiteId}",[SiteAdminController:: class,"validateNewArticle"])->name("validateNewArticle")->where([
         "websiteId" => "[0-9]+"]);
-    Route::get("/liste-articles/{websiteId}",[Slidecontroller::class,"listeArticles"])->name("listeArtciles")->where([
+    Route::get("/liste-articles/{websiteId}",[SiteAdminController::class,"listeArticles"])->name("listeArtciles")->where([
         "websiteId" => "[0-9]+"]);
-    Route::get("/supprimer/{websiteId}/{articleId}",[SlideController::class,"deleteArticle"])->name("deleteArticle")->where([
+    Route::get("/supprimer/{websiteId}/{articleId}",[SiteAdminController::class,"deleteArticle"])->name("deleteArticle")->where([
         "websiteId" => "[0-9]+",
         "articleId" => "[0-9]+"
     ]);
-    Route::get("/voir-commentaires/{websiteId}/{articleId}",[SlideController::class,"seeComments"])->name("seeComments")->where([
+    Route::get("/voir-commentaires/{websiteId}/{articleId}",[SiteAdminController::class,"seeComments"])->name("seeComments")->where([
         "websiteId" => "[0-9]+",
         "articleId" => "[0-9]+"
     ]);
 });
+
+Route::prefix("/site/{websiteName}")
+    ->group(function():void{
+        Route::get("/article/{articleId}",[SiteController::class,"showArticle"])->name("showArticle")->where([
+            "articleId" => "[0-9]+"
+        ]);
+
+        Route::get("/{pageLink}",[SiteController::class,"showPage"])->name("showHome")->where([
+            "pageLink" => ".+"
+        ]);
+    })->where([
+        "websiteName" => ".+"
+    ]);
 
 
 // page 404 par défaut
