@@ -1,8 +1,5 @@
--- Active: 1706002647885@@127.0.0.1@3306@projet_cms
-DROP DATABASE IF EXISTS projet_cms;
-
-CREATE DATABASE projet_cms;;
-
+DROP DATABASE IF EXISTS projet_cms;
+CREATE DATABASE projet_cms;;
 USE projet_cms;
 CREATE TABLE wuser(
    id INT AUTO_INCREMENT,
@@ -20,6 +17,7 @@ CREATE TABLE website(
    website_name VARCHAR(30)  NOT NULL,
    user_id INT NOT NULL,
    PRIMARY KEY(id),
+   UNIQUE(website_name),
    FOREIGN KEY(user_id) REFERENCES wuser(id)
 );
 
@@ -29,4 +27,13 @@ CREATE TABLE articles(
    id_1 INT NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(id_1) REFERENCES website(id)
+);
+
+CREATE TABLE Feedback(
+   id INT AUTO_INCREMENT,
+   contenu VARCHAR(50)  NOT NULL,
+   user_name VARCHAR(60)  NOT NULL,
+   id_1 INT NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_1) REFERENCES articles(id)
 );

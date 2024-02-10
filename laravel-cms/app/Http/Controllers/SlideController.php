@@ -169,4 +169,21 @@ class SlideController extends Controller{
         $article->delete();
         return redirect()->route("listeArtciles",["websiteId"=>$websiteId]);
     }
+
+    /**
+     * affiche les commentaires d'un article
+     * @param int $websiteId l'id du site
+     * @param int $articleId l'id de l'article
+     */
+    public function seeComments($websiteId,$articleId){
+        $article = ArticleModel::where(["id"=>$articleId,"id_1"=>$websiteId])->first();
+        if($article == null){
+            return redirect()->route("admin.home");
+        }
+        return view("site-manager/seeComments",[
+            "comments"=>$article->feedbacks,
+            "websiteId"=>$websiteId,
+            "articleId"=>$articleId
+        ]);
+    }
 }

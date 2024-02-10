@@ -6,15 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ArticleModel extends Model{
+class FeedbackModel extends Model{
     use HasFactory;
 
-    protected $table = "articles";
+    protected $table = "Feedback";
     public $timestamps = false;
-
-    public function feedbacks():HasMany{
-        return $this->hasMany(FeedbackModel::class,"id_1");
-    }
 }
 
 
