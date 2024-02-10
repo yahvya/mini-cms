@@ -11,12 +11,19 @@ use Illuminate\Support\Facades\Storage;
 
 class SlideController extends Controller{
 
+    /**
+     * affiche la liste des sites de la personne
+     */
     public function showWebsites(Request $request){
         // récupération de la liste des sites de l'utilisateur
         return view("site-manager/show-websites-list",[
             "websites" => UserModel::where(["id" => $request->session()->get("wuser")["id"]])->first()->websites
         ]);
     }
+
+    /**
+     * Valide la création d'un site
+     */
     public function validateSite(Request $request){
        $site= $request->validate([
             "site-name"=>"required",
@@ -80,9 +87,13 @@ class SlideController extends Controller{
 
         return redirect()->route("admin.home");
     }
+
+    /**
+     * Affiche la page de création d'un nouveau site
+     */
    public function NewWebSite() {
         return view("site-manager/site");
-    
+
     }
 
  
