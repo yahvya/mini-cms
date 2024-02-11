@@ -47,6 +47,9 @@ class SiteAdminController extends Controller{
             "Separation-color"=>$site["Separation-color"]
         ];
 
+        $articleTemplate = $site1["articleTemplate"];
+        unset($site1["articleTemplate"]);
+
         // création de l'image du site
         $image = imagecreatetruecolor(10* count(str_split($site["site-name"])),50);
 
@@ -76,7 +79,7 @@ class SiteAdminController extends Controller{
         // création de l'article
         $article = new ArticleModel();
 
-        $article->contenu = json_encode($site1["articleTemplate"]);
+        $article->contenu = json_encode($articleTemplate);
         $article->id_1 = $site2->id;
 
         if(!$article->save() ){
@@ -92,7 +95,6 @@ class SiteAdminController extends Controller{
      */
    public function NewWebSite() {
         return view("site-manager/site");
-
     }
 
     /**
