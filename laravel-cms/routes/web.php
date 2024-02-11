@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 
+Route::get("/",fn() => redirect()->route("login.login"));
+
 //liens de connexion
 Route::prefix("/connexion")->middleware(NotAuthMiddleware::class)->group(function():void {
     Route::view("/", "login/login")->name("login.login");
@@ -33,7 +35,7 @@ Route::prefix("/admin")->middleware(AuthMiddleware::class)->group(function(){
     ]);
     Route::post("/nouveau-article/{websiteId}",[SiteAdminController:: class,"validateNewArticle"])->name("validateNewArticle")->where([
         "websiteId" => "[0-9]+"]);
-    Route::get("/liste-articles/{websiteId}",[SiteAdminController::class,"listeArticles"])->name("listeArtciles")->where([
+    Route::get("/liste-articles/{websiteId}",[SiteAdminController::class, "listArticles"])->name("listeArtciles")->where([
         "websiteId" => "[0-9]+"]);
     Route::get("/supprimer/{websiteId}/{articleId}",[SiteAdminController::class,"deleteArticle"])->name("deleteArticle")->where([
         "websiteId" => "[0-9]+",

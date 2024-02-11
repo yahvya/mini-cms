@@ -13,6 +13,11 @@ export class Images extends BasicComponent {
      * @protected
      */
     alt;
+    /**
+     * taille de l'image
+     * @protected
+     */
+    size;
     constructor() {
         super();
         this.name = "Image";
@@ -21,18 +26,21 @@ export class Images extends BasicComponent {
         return {
             componentName: this.name,
             src: this.src,
-            alt: this.alt
+            alt: this.alt,
+            size: this.size
         };
     }
     createFrom(componentsMap, component) {
         this.src = component.src;
         this.alt = component.alt;
+        this.size = component.size;
         return this;
     }
     drawing(parent) {
         this.htmlElement = document.createElement("img");
         this.htmlElement.src = this.src;
         this.htmlElement.alt = this.alt;
+        this.htmlElement.style = `--special-image-size: ${this.size}px`;
         this.htmlElement.classList.add("special-image");
         parent.append(this.htmlElement);
         return this.htmlElement;
@@ -52,11 +60,15 @@ export class Images extends BasicComponent {
         this.alt = alt;
     }
     askContent(toExecOnValidate) {
-        const modal = this.getModel();
+        const modal = this.getModal();
         const contente = modal.querySelector(".content");
         contente.innerHTML = `
             <div class="input-container">
                 <input type="text" name="alt" placeholder="Entrez le alt de l'image">
+            </div>
+
+            <div class="input-container">
+                <input type="number" name="size" placeholder="Entrez la taille de l'image">
             </div>
 
             <div class="input-container">
@@ -71,10 +83,14 @@ export class Images extends BasicComponent {
 
         `;
         modal.addEventListener("submit", () => {
+            // récupération des choix
             const alt = contente.querySelector("input[name=alt]");
-            this.alt = alt.value;
             const src = contente.querySelector("input[name=src]");
+            const size = contente.querySelector("input[name=size]");
+            this.alt = alt.value;
+            this.size = parseInt(size.value);
             if (src.value.length == 0) {
+                // lecture du fichier et transformation en base64
                 var reader = new FileReader();
                 const fileSelector = contente.querySelector("input[name=crc]");
                 reader.readAsDataURL(fileSelector.files[0]);

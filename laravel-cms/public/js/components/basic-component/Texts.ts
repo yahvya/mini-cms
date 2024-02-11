@@ -50,7 +50,7 @@ export class Texts extends BasicComponent{
     }
 
     public askContent(toExecOnValidate:Function): void{
-        const modal = this.getModel();
+        const modal = this.getModal();
         const contente = modal.querySelector(".content");
 
         contente!.innerHTML=`

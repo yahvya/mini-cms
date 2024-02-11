@@ -41,7 +41,7 @@ export class Texts extends BasicComponent {
         this.text = text;
     }
     askContent(toExecOnValidate) {
-        const modal = this.getModel();
+        const modal = this.getModal();
         const contente = modal.querySelector(".content");
         contente.innerHTML = `
             <div class="input-container">

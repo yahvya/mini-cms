@@ -58,7 +58,7 @@ export class Titles extends BasicComponent{
         this.level = level;
     }
     public askContent(toExecOnValidate:Function): void{
-        const modal = this.getModel();
+        const modal = this.getModal();
         const contente = modal.querySelector(".content");
 
         contente!.innerHTML=`

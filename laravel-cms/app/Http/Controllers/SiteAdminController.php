@@ -54,7 +54,7 @@ class SiteAdminController extends Controller{
 
         if(
             !imagestring($image,5,5,5,$site["site-name"],0) ||
-            !imagepng($image,storage_path("/app/public/{$siteFolder}/site-image.png"))  
+            !imagepng($image,storage_path("/app/public/{$siteFolder}/site-image.png"))
         ){
             Session::flash("site-error","Echec de création de l'image du site");
             return redirect()->route("admin.new-website");
@@ -67,7 +67,7 @@ class SiteAdminController extends Controller{
         $site2->website_name=$site["site-name"];
         $site2->user_id=$request->session()->get("wuser")["id"];
 
-        if(!$site2->save() ){ 
+        if(!$site2->save() ){
             Storage::delete($filename);
             Session::flash("site-error","Echec de création du site");
             return redirect()->route("admin.new-website");
@@ -104,7 +104,7 @@ class SiteAdminController extends Controller{
         if($article==null){
             return redirect()->route("admin.home");
         }
-        return view("site-manager/nouveau-article",[
+        return view("site-manager/new-article",[
             "article"=>$article,
             "websiteId"=>$websiteId
         ]);
@@ -115,7 +115,7 @@ class SiteAdminController extends Controller{
      * @param int $websiteId l'id du site
      */
     public function validateNewArticle(int $websiteId,Request $request){
-    
+
         $site = $request->validate([
             "title"=>"required",
             "new-article"=>"required"
@@ -144,7 +144,7 @@ class SiteAdminController extends Controller{
      * affiche la liste des articles d'un site
      * @param int $websiteId l'id du site
      */
-    public function listeArticles($websiteId){
+    public function listArticles($websiteId){
         $website = Website::where(["id"=>$websiteId])->first();
 
         if($website == null){

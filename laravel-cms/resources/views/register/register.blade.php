@@ -8,11 +8,11 @@
 @endsection
 
 @section("css")
-    <link rel="stylesheet" href="{{ asset("css/login.css")  }}">
+    <link rel="stylesheet" href="{{ asset("css/app/login.css")  }}">
 @endsection
 
 @section ("body")
-    <form action="{{ route("register.validate")  }}" method="post" class="login-form">
+    <form action="{{ route("register.validate") }}" method="post" class="login-form">
         <img src= "{{ asset("images/icon.png") }}" alt="icon de site">
 
         <div>

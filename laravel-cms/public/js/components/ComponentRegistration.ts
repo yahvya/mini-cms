@@ -13,58 +13,54 @@ import {BurgerMenu} from "./with-children/BurgerMenu.js";
 import {Rows} from "./with-children/Rows.js";
 import {Columns} from "./with-children/Columns.js";
 
-const componentsMap:Record<string, Record<string, any>> = {
-    "ComponentsMap" : {
-        "Lien": {
-            "icon" : "<i class=\"fa-solid fa-link\"></i>",
-            "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Links().createFrom(componentsMap,componentConfig),
-			"basic-create" : () => new Links()
-        },
-        "Texte": {
-            "icon" : "<i class=\"fa-solid fa-font\"></i>",
-            "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Texts().createFrom(componentsMap,componentConfig),
-			"basic-create" : () => new Texts()
-        },
-        "Image": {
-            "icon" : "<i class=\"fa-solid fa-image\"></i>",
-            "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Images().createFrom(componentsMap,componentConfig),
-			"basic-create" : () => new Images()
-        },
-        "Titre": {
-            "icon" : "<i class=\"fa-solid fa-heading\"></i>",
-            "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Titles().createFrom(componentsMap,componentConfig),
-			"basic-create" : () => new Titles()
-        },
-        "Menu horizontal": {
-            "icon" : "<i class=\"fa-solid fa-ruler-horizontal\"></i>",
-            "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new HorizontalMenu().createFrom(componentsMap,componentConfig),
-			"basic-create" : () => new HorizontalMenu()
-        },
-        "Menu vertical": {
-            "icon" : "<i class=\"fa-solid fa-ruler-vertical\"></i>",
-            "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new VerticalMenu().createFrom(componentsMap,componentConfig),
-			"basic-create" : () => new VerticalMenu()
-        },
-        "Menu hamburger": {
-            "icon" : "<i class=\"fa-solid fa-burger\"></i>",
-            "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new BurgerMenu().createFrom(componentsMap,componentConfig),
-			"basic-create" : () => new BurgerMenu()
-        },
-        "Ligne": {
-            "icon" : "<i class=\"fa-solid fa-grip-lines\"></i>",
-            "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Rows().createFrom(componentsMap,componentConfig),
-			"basic-create" : () => new Rows()
-        },
-        "Colonne": {
-		    "icon" : "<i class=\"fa-solid fa-table-columns\"></i>",
-		    "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Columns().createFrom(componentsMap,componentConfig),
-			"basic-create" : () => new Columns()
-        },
-        "Page": {
-            "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Page().createFrom(componentsMap,componentConfig),
-			"basic-create" : () => new Page()
-        },
+export const componentsMap:Record<string, Record<string, any>> = {
+    "Lien": {
+        "icon" : "<i class=\"fa-solid fa-link\"></i>",
+        "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Links().createFrom(componentsMap,componentConfig),
+        "basic-create" : () => new Links()
+    },
+    "Texte": {
+        "icon" : "<i class=\"fa-solid fa-font\"></i>",
+        "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Texts().createFrom(componentsMap,componentConfig),
+        "basic-create" : () => new Texts()
+    },
+    "Image": {
+        "icon" : "<i class=\"fa-solid fa-image\"></i>",
+        "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Images().createFrom(componentsMap,componentConfig),
+        "basic-create" : () => new Images()
+    },
+    "Titre": {
+        "icon" : "<i class=\"fa-solid fa-heading\"></i>",
+        "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Titles().createFrom(componentsMap,componentConfig),
+        "basic-create" : () => new Titles()
+    },
+    "Menu horizontal": {
+        "icon" : "<i class=\"fa-solid fa-ruler-horizontal\"></i>",
+        "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new HorizontalMenu().createFrom(componentsMap,componentConfig),
+        "basic-create" : () => new HorizontalMenu()
+    },
+    "Menu vertical": {
+        "icon" : "<i class=\"fa-solid fa-ruler-vertical\"></i>",
+        "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new VerticalMenu().createFrom(componentsMap,componentConfig),
+        "basic-create" : () => new VerticalMenu()
+    },
+    "Menu hamburger": {
+        "icon" : "<i class=\"fa-solid fa-burger\"></i>",
+        "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new BurgerMenu().createFrom(componentsMap,componentConfig),
+        "basic-create" : () => new BurgerMenu()
+    },
+    "Ligne": {
+        "icon" : "<i class=\"fa-solid fa-grip-lines\"></i>",
+        "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Rows().createFrom(componentsMap,componentConfig),
+        "basic-create" : () => new Rows()
+    },
+    "Colonne": {
+        "icon" : "<i class=\"fa-solid fa-table-columns\"></i>",
+        "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Columns().createFrom(componentsMap,componentConfig),
+        "basic-create" : () => new Columns()
+    },
+    "Page": {
+        "creator": (componentConfig:Record<any, any>,componentsMap:Record<string,Function>) => new Page().createFrom(componentsMap,componentConfig),
+        "basic-create" : () => new Page()
     }
 };
-
-export default componentsMap;

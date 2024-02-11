@@ -3,7 +3,7 @@
 @section("title","Liste des sites")
 
 @section("css")
-    <link rel="stylesheet" href="{{ asset("css/site-manager/see-comments.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/site/admin/see-comments.css") }}">
 @endsection
 
 @section("body")

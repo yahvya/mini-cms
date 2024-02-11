@@ -8,7 +8,7 @@
 
 @section('js')
 {{-- charger le script apres la page--}}
-<script src="{{ asset("js/site-manager/nouveau-article.js") }}" defer type="module"></script>
+<script src="{{ asset("js/site-manager/new-article.js") }}" defer type="module"></script>
 @endsection
 
 

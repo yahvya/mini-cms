@@ -1,4 +1,4 @@
-@import url("/css/components/form.css");
+@import url("./components/form.css");
 
 .login-form {
     width: 500px;

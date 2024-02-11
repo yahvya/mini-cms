@@ -1,23 +1,24 @@
 @import "./classes.css";
 
+/*lignes et colonnes*/
 .Line,.Column{
     gap: 30px;
     flex-wrap: wrap;
 }
 
+/*image*/
 .special-image{
-    width: 250px ;
+    width: var(--special-image-size);
     max-width: 95%;
 }
-.flex-row, .Line{
-    flex-direction: row;
-}
 
+/*menu burger*/
 .burger-menu label{
     height: 40px;
     width: 40px;
     gap: 5px;
 }
+
 .burger-menu label span{
     display: block;
     width: 70%;

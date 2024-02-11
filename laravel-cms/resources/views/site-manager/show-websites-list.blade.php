@@ -3,11 +3,11 @@
 @section("title","Vos sites - Mini cms")
 
 @section("css")
-    <link rel="stylesheet" href="{{ asset("css/site-manager/show-website-list.css")  }}">
+    <link rel="stylesheet" href="{{ asset("css/site/admin/show-website-list.css")  }}">
 @endsection
 
 @section("js")
-    <script src="{{ asset("js/site-manager/show-website-list.js")  }}" defer></script>
+    <script src="{{ asset("js/admin/show-website-list.js") }}" defer></script>
 @endsection
 
 @section("body")

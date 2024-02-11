@@ -1,5 +1,5 @@
-@import url("/css/components/form.css");
-@import "./menu.css";
+@import url("../../app/components/form.css");
+@import "../components/components.css";
 @import "./modal.css";
 
 #page-container{

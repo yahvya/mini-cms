@@ -7,8 +7,7 @@
 @endsection
 
 @section("css")
-    <link rel="stylesheet" href="{{ asset("css/login.css")  }}">
-    <script src="{{asset("js/test.js")}}" type="module"></script>
+    <link rel="stylesheet" href="{{ asset("css/app/login.css") }}">
 @endsection
 
 @section ("body")
