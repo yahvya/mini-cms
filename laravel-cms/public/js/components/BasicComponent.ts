@@ -12,8 +12,8 @@ export abstract class BasicComponent extends Component{
      */
     public setAsUpdatable():void{
         this.htmlElement.addEventListener("click",(e:any) => {
-            // annulation de l'action par défaut s'il y en a
-            if ("preventDefault" in e) e.preventDefault();
+            // on annule l'action par défaut s'il y en a
+            if("preventDefault" in e) e.preventDefault();
 
             this.askContent(() => {
                 const previousElement = this.htmlElement;
@@ -22,6 +22,9 @@ export abstract class BasicComponent extends Component{
                 this.drawing(document.createElement("div") );
 
                 previousElement.replaceWith(this.htmlElement);
+
+                // on replace l'évement sur le nouvel élélement html
+                this.setAsUpdatable();
             });
         });
     }

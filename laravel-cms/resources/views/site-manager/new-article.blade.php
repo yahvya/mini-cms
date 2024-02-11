@@ -3,12 +3,13 @@
 @section('title','Nouveau article')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset("css/site-manager/nouveau-article.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/site/admin/site-builder.css") }}">
 @endsection
 
 @section('js')
-{{-- charger le script apres la page--}}
-<script src="{{ asset("js/site-manager/new-article.js") }}" defer type="module"></script>
+    <script src="{{ asset("js/admin/new-article.js") }}" defer type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 @endsection
 
 
@@ -17,21 +18,16 @@
     <p>{{ Session::get("site-error") }}</p>
 @endif
 
-<form id = 'page' method="post" action="{{route("validateNewArticle",["websiteId" => $websiteId])}}">
-    <div class="input-container">
-        <input type="text" placeholder="Entrez le titre" name="title" required>
-    </div>
+<form id="new-article" method="post" action="{{route("validateNewArticle",["websiteId" => $websiteId])}}">
+    @include("site-manager/page-container-layout",["includeWithLinkRequirement" => false])
 
-    <div class="page-container"></div>
-
-    <button class="special-button validation-button">Valider la création</button>
     @csrf
 </form>
 
 @endsection
 
 @section('bodyJs')
-<script>
-    var article=JSON.parse(@json($article->contenu));
-</script>
+    <script>
+        var article=JSON.parse(@json($article->contenu));
+    </script>
 @endsection

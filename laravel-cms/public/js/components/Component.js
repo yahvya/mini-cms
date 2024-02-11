@@ -52,4 +52,11 @@ export class Component {
             modal.remove();
         });
     }
+    /**
+     * @return l'élement html interne
+     * @attention doit être appelé après dessin
+     */
+    getElement() {
+        return this.htmlElement;
+    }
 }

@@ -2,7 +2,7 @@ import {componentsMap} from "../components/ComponentRegistration.js";
 import {Page} from "../components/with-children/Page.js";
 
 export const pageComponents:Page = new Page();
-const componentHistory:Array<any> = [pageComponents];
+export const componentHistory:Array<any> = [pageComponents];
 
 const componentsContainer:HTMLDivElement = document.querySelector(".Components")!;
 const searchInput:HTMLInputElement = document.querySelector(".Components .search")!;
@@ -10,8 +10,14 @@ const searchComponent:Record<string, any> = {};
 
 export const page:HTMLElement = pageComponents.drawing(document.querySelector(".page-result .first-container")! );
 
+// on rend la page avec ses composants comme pouvant être modifié
+pageComponents.setAsUpdatable();
+
 // ajout de l'index du composant page
 page.setAttribute("data-index","0");
+
+// on permet de glisser les composants dans la page
+$(page).droppable(createDroppable() );
 
 // affichage des composants
 for( const ComponentList in componentsMap ) {
@@ -23,9 +29,6 @@ for( const ComponentList in componentsMap ) {
     list.innerHTML= `<p>${ComponentList}</p>`;
 
     if(componentsMap[ComponentList].icon !== null) list.innerHTML += componentsMap[ComponentList].icon;
-
-    // on permet de glisser les composants dans la page
-    $(page).droppable(createDroppable() );
 
     // permet de rendre le composant glissable
     $(list).draggable({
@@ -59,11 +62,20 @@ searchInput.addEventListener("input",() => {
     }
 });
 
+// évenement de preview
+page.addEventListener("mousedown",()=>{
+    page.classList.add("preview");
+});
+
+page.addEventListener("mouseup",()=>{
+    page.classList.remove("preview");
+});
+
 /**
  *  crée la configuration d'un élement droppable
  * @returns la configuration
  */
-function createDroppable(){
+export function createDroppable(){
     return {
         accept: '.Together',
         greedy: true,
@@ -72,20 +84,27 @@ function createDroppable(){
 
             // demande de la configuration du composant
             component.askContent(() => {
-                // ajout du composant dans les enfants de son parent
-                componentHistory[parseInt($(this).data("index"))].addChild(component);
                 // sauvegarde du composant pour l'historique
                 componentHistory.push(component);
                 // dessin du composant
                 const drawedComponent:HTMLElement = component.drawing($(this) );
-
+                // ajout de son index dans l'historique
                 drawedComponent.setAttribute("data-index",`${componentHistory.length-1}`);
+                // ajout du composant dans les enfants de son parent
+                componentHistory[parseInt($(this).data("index"))].addChild(component);
 
-                if(component.ifComponentChild()){
-                    // transformation du composant en droppable
-                    $(drawedComponent).droppable(createDroppable() );
-                }
+                // transformation du composant en droppable si c'est un élement conteneur
+                if(component.ifComponentChild()) $(drawedComponent).droppable(createDroppable() );
+
+                updateHistory();
             });
         }
     };
+}
+
+/**
+ * met à jour l'historique
+ */
+export function updateHistory(){
+
 }

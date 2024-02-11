@@ -5,11 +5,11 @@
 
     <div class="page-result">
         <div class="first-container">
-            @if($includeWithTitleRequirement)
-                <div class="input-container">
-                    <input type="text" name="page-title" placeholder="Entrez le titre de la page">
-                </div>
+            <div class="input-container">
+                <input type="text" name="page-title" placeholder="Entrez le titre de la page" required>
+            </div>
 
+            @if($includeWithLinkRequirement)
                 <div class="input-container">
                     <input type="text" name="page-link" placeholder="Entrez l'url de la page">
                 </div>

@@ -74,11 +74,9 @@ div:has(#page){
     gap: 20px;
 }
 
-
 .page-result .input-container{
     margin-bottom: 10px;
 }
-
 
 .input-container p{
     width: 200px;
@@ -87,5 +85,4 @@ div:has(#page){
 
 #page:not(.preview) *{
     border: solid 1px var(--body-special-color);
-
 }

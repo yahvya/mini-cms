@@ -9,13 +9,22 @@ export abstract class ComponentChildren extends Component{
      * @protected
      */
     protected children: Array<Component> = [];
+    /**
+     * défini si le composant a été rendu comme pouvant être mise à jour
+     * @protected
+     */
+    protected isUpdatable:boolean = false;
 
     /**
      * ajoute un enfant à la liste des enfants
      * @param toAdd le composant à ajouter
      */
     public addChild(...toAdd:Array<Component>):ComponentChildren{
-        this.children!.push(...toAdd);
+        toAdd.forEach(component => {
+            this.children!.push(component);
+
+            if(this.isUpdatable) component.setAsUpdatable();
+        });
 
         return this;
     }
@@ -45,7 +54,7 @@ export abstract class ComponentChildren extends Component{
         };
     }
 
-    public createFrom(componentsMap:Record<string,Function>,component:Record<any, any>):Component{
+    public createFrom(componentsMap:Record<string, Record<string, any>>,component:Record<any, any>):Component{
         this.children = component.children.map((child:Record<any, any>) => Component.createComponent(componentsMap,child.componentName,child) );
 
         return this;
@@ -70,5 +79,14 @@ export abstract class ComponentChildren extends Component{
         this.children!.forEach(child => {
             child.setAsUpdatable();
         } );
+
+        this.isUpdatable = true;
+    }
+
+    /**
+     * @return la liste des enfants du composant
+     */
+    public getChildren():Array<Component>{
+        return this.children;
     }
 }

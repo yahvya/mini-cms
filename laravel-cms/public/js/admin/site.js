@@ -9,12 +9,6 @@ const site = {
 };
 // le type de page à définir
 let isArticleTemplate = true;
-page.addEventListener("mousedown", () => {
-    page.classList.add("preview");
-});
-page.addEventListener("mouseup", () => {
-    page.classList.remove("preview");
-});
 // évenement de validation d'une page crée
 document.querySelector(".validate-page").addEventListener("click", () => {
     if (pageTitleContainer.value.length == 0) {

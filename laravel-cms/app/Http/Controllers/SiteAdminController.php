@@ -115,18 +115,16 @@ class SiteAdminController extends Controller{
      * @param int $websiteId l'id du site
      */
     public function validateNewArticle(int $websiteId,Request $request){
-
         $site = $request->validate([
-            "title"=>"required",
+            "page-title"=>"required",
             "new-article"=>"required"
         ]);
-
 
         // création de l'article
         $article = new ArticleModel();
 
         $article->contenu = json_encode([
-            "title" =>$site["title"],
+            "title" => $site["page-title"],
             "page-content" => json_decode($site["new-article"],true)
         ]);
 
@@ -136,8 +134,8 @@ class SiteAdminController extends Controller{
             Session::flash("site-error","Echec de création de l'article");
             return redirect()->route("admin.new-website");
         }
-        return "page des articles";
-        // return redirect()->route("admin.home");
+
+        return redirect()->route("listeArtciles",["websiteId" => $websiteId]);
     }
 
     /**

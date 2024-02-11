@@ -27,11 +27,12 @@ export abstract class Component {
 
     /**
      * défini le composantcomme pouvant être modifié
+     * @attention état non sauvegardé
      */
     public abstract setAsUpdatable():void;
 
     /**
-     * tronsormer le fichier en composant
+     * transformer le fichier en composant
      * @param componentsMap map des composants
      * @param component bloc de composant de site
      * @protected
@@ -94,4 +95,11 @@ export abstract class Component {
         });
     }
 
+    /**
+     * @return l'élement html interne
+     * @attention doit être appelé après dessin
+     */
+    public getElement():HTMLElement{
+        return this.htmlElement;
+    }
  }

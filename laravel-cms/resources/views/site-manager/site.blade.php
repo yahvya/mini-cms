@@ -46,5 +46,5 @@
         @csrf
     </form>
 
-    @include("site-manager/page-container-layout",["includeWithTitleRequirement" => true])
+    @include("site-manager/page-container-layout",["includeWithLinkRequirement" => true])
 @endsection
