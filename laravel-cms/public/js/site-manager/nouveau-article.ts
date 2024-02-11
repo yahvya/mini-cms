@@ -3,11 +3,11 @@ import ComponentsMap from "../components/ComponentRegistration.js";
 declare var article:Record<string,any>;
 
 const form = document.querySelector("#page")!;
-const page = Component.createComponent(ComponentsMap["ComponentsMap"],"Page",article["page-content"]);
+const page = Component.createComponent(ComponentsMap["ComponentsMap"],"Page",article["page-content"])!;
 
 // dessin de la page et rendu modifiable
-page!.drawing(form.querySelector(".page-container")!);
-page!.setAsUpdatable();
+page.drawing(form.querySelector(".page-container")!);
+page.setAsUpdatable();
 
 // ajout des données de la page dans le formulaire
 form!.addEventListener("submit",() => {

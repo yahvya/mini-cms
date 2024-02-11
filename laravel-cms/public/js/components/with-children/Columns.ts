@@ -14,7 +14,6 @@ export class Columns extends ComponentChildren{
 
     public askContent(toExecOnValidate: Function): void {
         toExecOnValidate();
-        
-    }
 
+    }
 }

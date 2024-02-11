@@ -41,7 +41,10 @@ export class BasicComponent extends Component {
      * défini le contenu du composant comme pouvant être modifié
      */
     setAsUpdatable() {
-        this.htmlElement.addEventListener("click", () => {
+        this.htmlElement.addEventListener("click", (e) => {
+            // annulation de l'action par défaut s'il y en a
+            if ("preventDefault" in e)
+                e.preventDefault();
             this.askContent(() => {
                 const previousElement = this.htmlElement;
                 // dessin dans une balise qui n'apparait pas

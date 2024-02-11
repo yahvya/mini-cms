@@ -1,5 +1,9 @@
 import { ComponentChildren } from "../ComponentChildren.js";
 export class BurgerMenu extends ComponentChildren {
+    constructor() {
+        super();
+        this.name = "Menu hamburger";
+    }
     askContent(toExecOnValidate) {
         toExecOnValidate();
     }
@@ -12,13 +16,14 @@ export class BurgerMenu extends ComponentChildren {
         <input type="checkbox" id="bg-menu" autocomplete="off">
 
         <label for="bg-menu" class="flex-column align-center justify-center">
-    
+
             <span></span>
             <span></span>
             <span></span>
         </label>`;
         burger.append(this.htmlElement);
         parent.append(burger);
+        super.drawing(burger);
         return this.htmlElement;
     }
 }

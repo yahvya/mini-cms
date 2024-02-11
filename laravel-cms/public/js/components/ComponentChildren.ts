@@ -51,7 +51,6 @@ export abstract class ComponentChildren extends Component{
         return this;
     }
 
-
     public  drawing(parent:HTMLElement):HTMLElement{
         this.children!.forEach(child => child.drawing(this.htmlElement!) );
 
@@ -59,9 +58,9 @@ export abstract class ComponentChildren extends Component{
 
         return this.htmlElement!;
     }
+
     public ifComponentChild(): boolean {
         return true;
-
     }
 
     /**
