@@ -51,7 +51,7 @@ class SiteAdminController extends Controller{
         unset($site1["articleTemplate"]);
 
         // création de l'image du site
-        $image = imagecreatetruecolor(10* count(str_split($site["site-name"])),50);
+        $image = imagecreatetruecolor(10 * count(str_split($site["site-name"])),50);
 
         imagefill($image, 0, 0,imagecolorallocate($image,255,255,255));
 

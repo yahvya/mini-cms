@@ -1,12 +1,15 @@
 import {componentsMap} from "../components/ComponentRegistration.js";
 import {Page} from "../components/with-children/Page.js";
+import {Component} from "../components/Component.js";
+import {ComponentChildren} from "../components/ComponentChildren.js";
 
 export const pageComponents:Page = new Page();
 export const componentHistory:Array<any> = [pageComponents];
 
-const componentsContainer:HTMLDivElement = document.querySelector(".Components")!;
-const searchInput:HTMLInputElement = document.querySelector(".Components .search")!;
+const componentsContainer:HTMLDivElement = document.querySelector("#page-container .Components")!;
+const searchInput:HTMLInputElement = document.querySelector("#page-container .Components .search")!;
 const searchComponent:Record<string, any> = {};
+const historyContainer:HTMLDivElement = document.querySelector("#page-container .history")!;
 
 export const page:HTMLElement = pageComponents.drawing(document.querySelector(".page-result .first-container")! );
 
@@ -106,5 +109,54 @@ export function createDroppable(){
  * met à jour l'historique
  */
 export function updateHistory(){
+    // on vide le contenu de l'historique
+    Array.from(historyContainer.children).forEach(child => child.remove() );
 
+    // affichage de l'historique
+    componentHistory.forEach((component:Component,key:number) => {
+        const historyElement:HTMLDivElement = document.createElement("div");
+
+        historyElement.classList.add("flex-row","align-center","justify-center");
+        historyElement.innerHTML = `
+            <p>${component.getName()}</p>
+            <i class="fa-solid fa-xmark"></i>
+        `;
+
+        // suppression du composant
+        historyElement.querySelector("i")!.addEventListener("click",() => {
+            const element =  component.getElement();
+
+            element.animate({opacity:0},400);
+            historyElement.animate({opacity: 0},400).addEventListener("finish",() => {
+                delete componentHistory[key];
+                element.remove();
+                historyElement.remove();
+
+                // suppression du composant dans son parent
+                deleteChild(pageComponents,component);
+
+                console.log(pageComponents.exportComponent() );
+            });
+        });
+
+        historyContainer.append(historyElement);
+    });
+}
+
+/**
+ * supprime le composant fourni
+ * @param component parent dans lequel chercher
+ * @param toDelete composant à supprimer
+ */
+function deleteChild(component:ComponentChildren,toDelete:Component):void{
+    const children:Array<Component> = component.getChildren();
+
+    for(const key in children){
+        if(children[key] == toDelete){
+            component.removeChild(toDelete);
+
+            break;
+        }
+        else if(children[key].ifComponentChild() ) deleteChild(children[key] as ComponentChildren,toDelete);
+    }
 }

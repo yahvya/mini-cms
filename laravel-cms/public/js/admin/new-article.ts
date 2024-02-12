@@ -1,6 +1,5 @@
 import {page, pageComponents, createDroppable, componentHistory, updateHistory} from "./page-container.js";
 import {componentsMap} from "../components/ComponentRegistration.js";
-import {Component} from "../components/Component.js";
 import {ComponentChildren} from "../components/ComponentChildren";
 
 declare var article:Record<string,any>;

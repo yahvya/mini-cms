@@ -102,4 +102,11 @@ export abstract class Component {
     public getElement():HTMLElement{
         return this.htmlElement;
     }
+
+    /**
+     * @return le nom du composant
+     */
+    public getName():string{
+        return this.name!;
+    }
  }

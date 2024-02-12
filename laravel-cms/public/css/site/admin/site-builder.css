@@ -6,6 +6,24 @@
     gap: 5%;
 }
 
+.history{
+    gap: 20px;
+}
+
+.history div{
+    background-color: var(--body-up-color);
+    border: solid 1px var(--body-special-color);
+    padding: 2px;
+    border-radius: 3px;
+    width: 150px;
+    max-width: 90%;
+    gap: 30px;
+}
+
+.history div i{
+    cursor: pointer;
+}
+
 .Components,
 .history{
     width: 20%;

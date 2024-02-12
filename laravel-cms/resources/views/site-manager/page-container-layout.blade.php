@@ -18,5 +18,5 @@
         <button class="special-button validate-page">Valider la page</button>
     </div>
 
-    <div class="history"></div>
+    <div class="history flex-column align-center"></div>
 </div>

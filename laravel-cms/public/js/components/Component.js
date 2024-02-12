@@ -59,4 +59,10 @@ export class Component {
     getElement() {
         return this.htmlElement;
     }
+    /**
+     * @return le nom du composant
+     */
+    getName() {
+        return this.name;
+    }
 }
