@@ -114,6 +114,8 @@ export function updateHistory(){
 
     // affichage de l'historique
     componentHistory.forEach((component:Component,key:number) => {
+        if(component.getName() == "Page") return;
+
         const historyElement:HTMLDivElement = document.createElement("div");
 
         historyElement.classList.add("flex-row","align-center","justify-center");
@@ -129,7 +131,7 @@ export function updateHistory(){
             element.animate({opacity:0},400);
             historyElement.animate({opacity: 0},400).addEventListener("finish",() => {
                 delete componentHistory[key];
-                element.remove();
+                component.removeElement();
                 historyElement.remove();
 
                 // suppression du composant dans son parent

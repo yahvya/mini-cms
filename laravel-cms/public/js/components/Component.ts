@@ -109,4 +109,11 @@ export abstract class Component {
     public getName():string{
         return this.name!;
     }
+
+    /**
+     * supprime l'élement du composant
+     */
+    public removeElement():void{
+        this.htmlElement.remove();
+    }
  }

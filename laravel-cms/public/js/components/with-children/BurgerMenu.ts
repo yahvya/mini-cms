@@ -1,6 +1,12 @@
 import { ComponentChildren } from "../ComponentChildren.js";
 
 export class BurgerMenu extends ComponentChildren{
+    /**
+     * conteneur général du menu burger
+     * @protected
+     */
+    protected burger:HTMLDivElement|undefined;
+
     constructor() {
         super();
         this.name = "Menu hamburger";
@@ -14,10 +20,10 @@ export class BurgerMenu extends ComponentChildren{
         this.htmlElement= document.createElement("div");
         this.htmlElement.classList.add("flex-row","Line");
 
-        const burger= document.createElement("div");
+        this.burger= document.createElement("div");
 
-        burger.classList.add("burger-menu");
-        burger.innerHTML= `
+        this.burger.classList.add("burger-menu");
+        this.burger.innerHTML= `
         <input type="checkbox" id="bg-menu" autocomplete="off">
 
         <label for="bg-menu" class="flex-column align-center justify-center">
@@ -27,11 +33,15 @@ export class BurgerMenu extends ComponentChildren{
             <span></span>
         </label>`;
 
-        burger.append(this.htmlElement);
-        parent.append(burger);
+        this.burger.append(this.htmlElement);
+        parent.append(this.burger);
 
-        super.drawing(burger);
+        super.drawing(this.burger);
 
         return this.htmlElement;
+    }
+
+    public removeElement():void {
+        this.burger!.remove();
     }
 }

@@ -65,4 +65,10 @@ export class Component {
     getName() {
         return this.name;
     }
+    /**
+     * supprime l'élement du composant
+     */
+    removeElement() {
+        this.htmlElement.remove();
+    }
 }
