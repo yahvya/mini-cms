@@ -20,6 +20,7 @@
 
     <script>
         var page = @json($pageDatas["page-content"]);
+        var prefix = "{!! $prefix !!}";
     </script>
 </body>
 </html>

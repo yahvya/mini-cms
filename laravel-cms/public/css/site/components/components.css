@@ -76,6 +76,11 @@ body{
 
 .burger-menu label,
 #bg-menu:checked ~ label ~ .Column{
+    margin-top: 20px;
+}
+
+.burger-menu label,
+#bg-menu:checked ~ label ~ .Column{
     display: flex !important;
 }
 

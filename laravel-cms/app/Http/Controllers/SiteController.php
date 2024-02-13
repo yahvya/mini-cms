@@ -32,7 +32,8 @@ class SiteController extends Controller
         // affichage de la page
         return view("site-manager/site-page",[
             "colors" => $config["colors"],
-            "pageDatas" => json_decode($article->contenu,true)
+            "pageDatas" => json_decode($article->contenu,true),
+            "prefix" => route("showHome",["websiteName" => $website->website_formatted_name,"pageLink" => "-replace-"])
         ]);
     }
 
@@ -67,7 +68,8 @@ class SiteController extends Controller
         // affichage de la page
         return view("site-manager/site-page",[
             "colors" => $config["colors"],
-            "pageDatas" => $page
+            "pageDatas" => $page,
+            "prefix" => route("showHome",["websiteName" => $website->website_formatted_name,"pageLink" => "-replace-"])
         ]);
     }
 
