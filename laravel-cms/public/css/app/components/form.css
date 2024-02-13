@@ -9,7 +9,9 @@
     font-family: "Roboto Condensed",sans-serif;
 }
 
-.input-container input, .input-container select{
+.input-container input,
+.input-container select,
+.input-container textarea{
     outline: none;
     background-color: transparent;
     border: none;

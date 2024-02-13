@@ -10,8 +10,14 @@
     <title>{{ $pageDatas["title"] }}</title>
 </head>
 <body>
+    <div class="result-container"></div>
+
+    @if($addHistory)
+        @include("site-manager.feedback-getter")
+    @endif
+
     <style>
-        :root{
+        :root {
             @foreach($colors as $variableName => $color)
                 --{{ $variableName }}: {{ $color }};
             @endforeach

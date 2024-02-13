@@ -6,7 +6,7 @@ declare var prefix:string;
 
 const pageComponent:Component = Component.createComponent(componentsMap,"Page",page);
 
-pageComponent.drawing(document.body);
+pageComponent.drawing(document.querySelector(".result-container"));
 
 document.querySelectorAll("a").forEach((a:HTMLAnchorElement) => {
     const link:string = a.getAttribute("href");

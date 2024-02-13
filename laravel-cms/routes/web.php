@@ -49,6 +49,12 @@ Route::prefix("/admin")->middleware(AuthMiddleware::class)->group(function(){
 
 Route::prefix("/site/{websiteName}")
     ->group(function():void{
+        Route::post("/commentaires/ajouter/{articleId}",[SiteController::class,"addFeedback"])
+            ->name("add-feedback")
+            ->where([
+                "websiteName" => ".+",
+                "articleId" => "[0-9]+"
+            ]);
         Route::get("/article/{articleId}",[SiteController::class,"showArticle"])->name("showArticle")->where([
             "articleId" => "[0-9]+"
         ]);

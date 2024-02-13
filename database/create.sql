@@ -1,5 +1,7 @@
-DROP DATABASE IF EXISTS projet_cms;
-CREATE DATABASE projet_cms;;
+DROP DATABASE IF EXISTS projet_cms;
+
+CREATE DATABASE projet_cms;;
+
 USE projet_cms;
 CREATE TABLE wuser(
    id INT AUTO_INCREMENT,
@@ -32,7 +34,7 @@ CREATE TABLE articles(
 
 CREATE TABLE Feedback(
    id INT AUTO_INCREMENT,
-   contenu VARCHAR(50)  NOT NULL,
+   contenu VARCHAR(250)  NOT NULL,
    user_name VARCHAR(60)  NOT NULL,
    id_1 INT NOT NULL,
    PRIMARY KEY(id),

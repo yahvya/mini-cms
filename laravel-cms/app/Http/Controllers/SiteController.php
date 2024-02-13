@@ -31,9 +31,12 @@ class SiteController extends Controller
 
         // affichage de la page
         return view("site-manager/site-page",[
+            "articleId" => $article->id,
             "colors" => $config["colors"],
             "pageDatas" => json_decode($article->contenu,true),
-            "prefix" => route("showHome",["websiteName" => $website->website_formatted_name,"pageLink" => "-replace-"])
+            "prefix" => route("showHome",["websiteName" => $website->website_formatted_name,"pageLink" => "-replace-"]),
+            "addHistory" => true,
+            "websiteName" => $website->website_formatted_name
         ]);
     }
 
@@ -69,8 +72,19 @@ class SiteController extends Controller
         return view("site-manager/site-page",[
             "colors" => $config["colors"],
             "pageDatas" => $page,
-            "prefix" => route("showHome",["websiteName" => $website->website_formatted_name,"pageLink" => "-replace-"])
+            "prefix" => route("showHome",["websiteName" => $website->website_formatted_name,"pageLink" => "-replace-"]),
+            "addHistory" => false,
+            "websiteName" => $website->website_formatted_name
         ]);
+    }
+
+    /**
+     * Ajoute un commentaire sur un article
+     * @param string $websiteName nom du site formaté
+     * @param int $articleId id de l'article
+     */
+    public function addFeedback(string $websiteName,int $articleId){
+
     }
 
     /**
