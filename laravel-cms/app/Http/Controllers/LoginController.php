@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
+    /**
+     * Connecte l'utilisateur
+     */
     public function validateLogin(Request $request){
         $datas = $request->validate([
             "email" => "required|email",
@@ -27,6 +30,15 @@ class LoginController extends Controller
         }
 
         Session::flash("login-error","Compte non trouvé");
+        return redirect()->route("login.login");
+    }
+
+    /**
+     * Déconnecte l'utilisateur
+     */
+    public function logout(Request $request){
+        $request->session()->remove("wuser");
+
         return redirect()->route("login.login");
     }
 }

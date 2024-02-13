@@ -27,12 +27,13 @@ Route::prefix("/inscription")->middleware(NotAuthMiddleware::class)->group(funct
 
 // liens d'administration des sites d'une personne
 Route::prefix("/admin")->middleware(AuthMiddleware::class)->group(function(){
+    Route::get("/deconnexion",[LoginController::class,"logout"]);
     Route::get("/",[SiteAdminController::class,"showWebsites"])->name("admin.home");
     Route::get("/Nouveau-site",[SiteAdminController::class, "NewWebSite"])->name("admin.new-website");
-    Route::post("/Mon-site",[SiteAdminController::class,"validateSite"])->name("mon-site");
     Route::get("/gestion/{websiteId}",[SiteAdminController::class,"createNewArticle"])->name("admin.manage")->where([
         "websiteId" => "[0-9]+"
     ]);
+    Route::post("/Mon-site",[SiteAdminController::class,"validateSite"])->name("mon-site");
     Route::post("/nouveau-article/{websiteId}",[SiteAdminController:: class,"validateNewArticle"])->name("validateNewArticle")->where([
         "websiteId" => "[0-9]+"]);
     Route::get("/liste-articles/{websiteId}",[SiteAdminController::class, "listArticles"])->name("listeArtciles")->where([
@@ -45,6 +46,13 @@ Route::prefix("/admin")->middleware(AuthMiddleware::class)->group(function(){
         "websiteId" => "[0-9]+",
         "articleId" => "[0-9]+"
     ]);
+    Route::get("/gerer-etat-commentaire/{websiteId}/{articleId}/{commentId}",[SiteAdminController::class,"manageFeedback"])
+        ->name("admin.manage-comment")
+        ->where([
+            "websiteId" => "[0-9]+",
+            "articleId" => "[0-9]+",
+            "commentId" => "[0-9]+"
+        ]);
 });
 
 // liens de visionnage d'un site
@@ -57,7 +65,7 @@ Route::prefix("/site/{websiteName}")
                 "websiteName" => ".+",
                 "articleId" => "[0-9]+"
             ]);
-        Route::get("/article/{articleId}",[SiteController::class,"showArticle"])->name("showArticle")->where([
+        Route::get("/article/{articleId?}",[SiteController::class,"showArticle"])->name("showArticle")->where([
             "articleId" => "[0-9]+"
         ]);
 

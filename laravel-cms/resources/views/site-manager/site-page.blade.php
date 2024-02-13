@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset("css/site/result.css")  }}">
+    <link rel="icon" href="{{ route("site.logo",["websiteName" => $websiteName]) }}">
     <script src="{{ asset("js/result.js") }}" defer type="module"></script>
     <title>{{ $pageDatas["title"] }}</title>
 </head>

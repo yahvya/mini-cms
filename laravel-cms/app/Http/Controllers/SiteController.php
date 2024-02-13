@@ -30,13 +30,16 @@ class SiteController extends Controller
      * @param string $websiteName nom du site
      * @param int $articleId id de l'article
      */
-    public function showArticle(string $websiteName,int $articleId,Request $request){
+    public function showArticle(Request $request,string $websiteName,$articleId = null){
         // on vérifie que le site et l'article existent
         $website = Website::where(["website_formatted_name" => $websiteName])->first();
 
         if($website === null) return redirect("/page-non-trouve");
 
-        $article = ArticleModel::where(["id_1" => $website->id,"id" => $articleId])->first();
+        if($articleId != null)
+            $article = ArticleModel::where(["id_1" => $website->id,"id" => $articleId])->first();
+        else
+            $article = ArticleModel::where(["id_1" => $website->id])->first();
 
         if($article === null) return redirect("/page-non-trouve");
 
@@ -53,7 +56,8 @@ class SiteController extends Controller
             "prefix" => route("showHome",["websiteName" => $website->website_formatted_name,"pageLink" => "-replace-"]),
             "addHistory" => true,
             "websiteName" => $website->website_formatted_name,
-            "articles" => $website->articles
+            "articles" => $website->articles,
+            "feedbacks" => $article->feedbacks
         ]);
     }
 
@@ -122,6 +126,7 @@ class SiteController extends Controller
         $feedback->contenu = $datas["feedback"];
         $feedback->user_name = $datas["username"];
         $feedback->id_1 = $article->id;
+        $feedback->status = true;
 
         if($feedback->save() ) Session::flash("feedback.success","Votre commentaire à bien été ajouté");
 
