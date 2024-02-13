@@ -15,6 +15,7 @@
                 <div class="flex-row align-center">
                     <a href="{{ route("deleteArticle",["websiteId" => $article->id_1,"articleId" => $article->id]) }}" class="special-button" title="Supprimer"><i class="fa-solid fa-trash"></i></a>
                     <a href="{{ route("seeComments",["websiteId" => $article->id_1,"articleId" => $article->id]) }}" class="special-button" title="Voir les commentaires"><i class="fa-solid fa-comment"></i></a>
+                    <a href="{{ route("showArticle",["websiteName" => $websiteName,"articleId" => $article->id]) }}" class="special-button" title="Voir les commentaires" target="_blank"><i class="fa-solid fa-eye"></i></a>
                 </div>
             </div>
         @endforeach

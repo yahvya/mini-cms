@@ -159,7 +159,8 @@ class SiteAdminController extends Controller{
 
         return view("site-manager/listeArticle",[
             "Articles"=>$website->articles,
-            "websiteId" => $websiteId
+            "websiteId" => $websiteId,
+            "websiteName" => $website->website_formatted_name
         ]);
     }
 
