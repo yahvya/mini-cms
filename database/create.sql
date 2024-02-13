@@ -15,6 +15,7 @@ CREATE TABLE website(
    id INT AUTO_INCREMENT,
    site_config_file_path VARCHAR(255)  NOT NULL,
    website_name VARCHAR(30)  NOT NULL,
+   website_formatted_name VARCHAR(50)  NOT NULL,
    user_id INT NOT NULL,
    PRIMARY KEY(id),
    UNIQUE(website_name),

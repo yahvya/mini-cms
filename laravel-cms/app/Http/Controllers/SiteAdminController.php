@@ -9,6 +9,7 @@ use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use PhpParser\NodeVisitor\FirstFindingVisitor;
 
 class SiteAdminController extends Controller{
@@ -44,7 +45,7 @@ class SiteAdminController extends Controller{
         $site1["colors"] =  [
             "textColor" => $site["Text-color"],
             "Background"=>$site["Background-page"],
-            "Separation-color"=>$site["Separation-color"]
+            "Separation-color"=> $site["Separation-color"]
         ];
 
         $articleTemplate = $site1["articleTemplate"];
@@ -68,6 +69,7 @@ class SiteAdminController extends Controller{
         $site2= new Website();
         $site2->site_config_file_path=$filename;
         $site2->website_name=$site["site-name"];
+        $site2->website_formatted_name = $this->formatWebsiteName($site["site-name"]);
         $site2->user_id=$request->session()->get("wuser")["id"];
 
         if(!$site2->save() ){
@@ -185,5 +187,14 @@ class SiteAdminController extends Controller{
             "websiteId"=>$websiteId,
             "articleId"=>$articleId
         ]);
+    }
+
+    /**
+     * Formate le nom du site fourni
+     * @param string $websiteName nom du site
+     * @return string le nom du site formaté
+     */
+    private function formatWebsiteName(string $websiteName):string{
+        return Str::snake($websiteName,"-");
     }
 }
