@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ArticleModel;
+use App\Models\FeedbackModel;
 use App\Models\Website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class SiteController extends Controller
 {
@@ -83,8 +85,32 @@ class SiteController extends Controller
      * @param string $websiteName nom du site formaté
      * @param int $articleId id de l'article
      */
-    public function addFeedback(string $websiteName,int $articleId){
+    public function addFeedback(string $websiteName,int $articleId,Request $request){
+        // récupération des données
+        $datas = $request->validate([
+            "username" => "required|min:2|max:60",
+            "feedback" => "required|min:10|max:250"
+        ]);
 
+        // vérification d'existance du site et de l'article
+        $website = Website::where(["website_formatted_name" => $websiteName])->first();
+
+        if($website == null) return redirect()->back();
+
+        $article = ArticleModel::where(["id_1" => $website->id,"id" => $articleId])->first();
+
+        if($article == null) return redirect()->back();
+
+        // création du commentaire
+        $feedback = new FeedbackModel();
+
+        $feedback->contenu = $datas["feedback"];
+        $feedback->user_name = $datas["username"];
+        $feedback->id_1 = $article->id;
+
+        if($feedback->save() ) Session::flash("feedback.success","Votre commentaire à bien été ajouté");
+
+        return redirect()->back();
     }
 
     /**

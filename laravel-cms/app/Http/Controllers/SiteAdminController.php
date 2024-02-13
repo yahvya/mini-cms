@@ -29,7 +29,7 @@ class SiteAdminController extends Controller{
      */
     public function validateSite(Request $request){
        $site= $request->validate([
-            "site-name"=>"required",
+            "site-name"=>"required|min:2|max:30",
             "Text-color"=>"required",
             "Background-page"=>"required",
             "Separation-color"=>"required",
@@ -120,7 +120,7 @@ class SiteAdminController extends Controller{
      */
     public function validateNewArticle(int $websiteId,Request $request){
         $site = $request->validate([
-            "page-title"=>"required",
+            "page-title"=>"required|min:2|max:30",
             "new-article"=>"required"
         ]);
 

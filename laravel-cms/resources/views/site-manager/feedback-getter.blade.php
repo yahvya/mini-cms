@@ -13,3 +13,7 @@
 
     @csrf
 </form>
+
+@if(Session::has("feedback.success") )
+    <p>{{ Session::get("feedback.success") }}</p>
+@endif
