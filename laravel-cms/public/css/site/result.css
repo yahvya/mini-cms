@@ -16,7 +16,7 @@ body{
     font-family: "Roboto","Arial","sans-serif";
 }
 
-.feedback-getter{
+.feedback-article-zone{
     margin-top: 50px;
 }
 
@@ -37,4 +37,30 @@ body{
 
 .feedback-getter .special-button{
     background-color: var(--Separation-color);
+}
+
+.img-logo{
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+.feedback-article-zone{
+    gap: 10%;
+    margin: auto;
+}
+
+.feedback-article-zone > *{
+    width: 500px
+}
+
+.articles-list ul{
+    list-style: square;
+}
+
+.articles-list ul li{
+    margin-top: 30px;
+}
+
+.articles-list ul a:hover{
+    text-decoration: underline;
 }

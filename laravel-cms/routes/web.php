@@ -47,8 +47,10 @@ Route::prefix("/admin")->middleware(AuthMiddleware::class)->group(function(){
     ]);
 });
 
+// liens de visionnage d'un site
 Route::prefix("/site/{websiteName}")
     ->group(function():void{
+        Route::get("/logo",[SiteController::class,"getLogo"])->name("site.logo");
         Route::post("/commentaires/ajouter/{articleId}",[SiteController::class,"addFeedback"])
             ->name("add-feedback")
             ->where([

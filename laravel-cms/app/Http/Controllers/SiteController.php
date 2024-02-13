@@ -12,6 +12,20 @@ use Illuminate\Support\Facades\Session;
 class SiteController extends Controller
 {
     /**
+     * Récupère le logo généré d'un site
+     * @param string $websiteName le nom du site
+     */
+    public function getLogo(string $websiteName){
+        $website = Website::where(["website_formatted_name" => $websiteName])->first();
+
+        if($website == null) return;
+
+        $pathParts = explode("/",$website->site_config_file_path);
+
+        return @file_get_contents(storage_path("app/public/{$pathParts[count($pathParts) - 2]}/site-image.png") ) ?? "";
+    }
+
+    /**
      * affiche un article du site fourni
      * @param string $websiteName nom du site
      * @param int $articleId id de l'article
@@ -38,7 +52,8 @@ class SiteController extends Controller
             "pageDatas" => json_decode($article->contenu,true),
             "prefix" => route("showHome",["websiteName" => $website->website_formatted_name,"pageLink" => "-replace-"]),
             "addHistory" => true,
-            "websiteName" => $website->website_formatted_name
+            "websiteName" => $website->website_formatted_name,
+            "articles" => $website->articles
         ]);
     }
 

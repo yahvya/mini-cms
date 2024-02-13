@@ -54,7 +54,7 @@ class SiteAdminController extends Controller{
         // création de l'image du site
         $image = imagecreatetruecolor(10 * count(str_split($site["site-name"])),50);
 
-        imagefill($image, 0, 0,imagecolorallocate($image,255,255,255));
+        imagefill($image, 0, 0,imagecolorallocate($image,229,225,190) );
 
         if(
             !imagestring($image,5,5,5,$site["site-name"],0) ||

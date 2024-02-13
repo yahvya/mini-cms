@@ -10,6 +10,8 @@
     <title>{{ $pageDatas["title"] }}</title>
 </head>
 <body>
+    <img src="{{ route("site.logo",["websiteName" => $websiteName]) }}" alt="Logo" class="img-logo">
+
     <div class="result-container"></div>
 
     @if($addHistory)
