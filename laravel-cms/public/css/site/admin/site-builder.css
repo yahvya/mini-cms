@@ -75,7 +75,7 @@ div:has(#page){
     margin-bottom: 15px;
 }
 
-.Line,.Column{
+.Line,.Column,.section{
     min-height: 30px;
     min-width: 70px;
     padding: 20px;

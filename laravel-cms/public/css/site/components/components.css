@@ -12,6 +12,11 @@
     max-width: 95%;
 }
 
+/*section*/
+.section{
+    border-bottom: solid 1px var(--site-section-border);
+}
+
 /*menu burger*/
 .burger-menu label{
     height: 40px;

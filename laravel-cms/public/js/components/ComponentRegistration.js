@@ -8,10 +8,16 @@ import { Titles } from "./basic-component/Titles.js";
 import { HorizontalMenu } from "./with-children/HorizontalMenu.js";
 import { Page } from "./with-children/Page.js";
 import { VerticalMenu } from "./with-children/VerticalMenu.js";
+import { Section } from "./with-children/Section.js";
 import { BurgerMenu } from "./with-children/BurgerMenu.js";
 import { Rows } from "./with-children/Rows.js";
 import { Columns } from "./with-children/Columns.js";
 export const componentsMap = {
+    "Section": {
+        "icon": "<i class=\"fa-regular fa-square\"></i>",
+        "creator": (componentConfig, componentsMap) => new Section().createFrom(componentsMap, componentConfig),
+        "basic-create": () => new Section()
+    },
     "Lien": {
         "icon": "<i class=\"fa-solid fa-link\"></i>",
         "creator": (componentConfig, componentsMap) => new Links().createFrom(componentsMap, componentConfig),
