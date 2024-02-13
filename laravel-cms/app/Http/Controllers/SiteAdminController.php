@@ -103,7 +103,7 @@ class SiteAdminController extends Controller{
      * Affiche la page de création d'un nouvel article
      * @param int $websiteId l'id du site
      */
-    public function createNewArticle($websiteId){
+    public function createNewArticle(int $websiteId){
         $article= ArticleModel::where(["id_1"=>"$websiteId"])->first();
         if($article==null){
             return redirect()->route("admin.home");
@@ -119,6 +119,10 @@ class SiteAdminController extends Controller{
      * @param int $websiteId l'id du site
      */
     public function validateNewArticle(int $websiteId,Request $request){
+        $website = Website::where(["id" => $websiteId])->first();
+
+        if($website == null || !$this->isMyWebsite($website,$request) ) return redirect()->back();
+
         $site = $request->validate([
             "page-title"=>"required|min:2|max:30",
             "new-article"=>"required"
@@ -146,12 +150,13 @@ class SiteAdminController extends Controller{
      * affiche la liste des articles d'un site
      * @param int $websiteId l'id du site
      */
-    public function listArticles($websiteId){
+    public function listArticles(int $websiteId,Request $request){
         $website = Website::where(["id"=>$websiteId])->first();
 
-        if($website == null){
+        if($website == null || !$this->isMyWebsite($website,$request) ){
             return redirect()->route("admin.home");
         }
+
         return view("site-manager/listeArticle",[
             "Articles"=>$website->articles,
             "websiteId" => $websiteId
@@ -163,8 +168,13 @@ class SiteAdminController extends Controller{
      * @param int $websiteId l'id du site
      * @param int $articleId l'id de l'article
      */
-    public function deleteArticle($websiteId,$articleId){
+    public function deleteArticle(string $websiteId,int $articleId,Request $request){
+        $website = Website::where(["id" => $websiteId])->first();
+
+        if($website == null || !$this->isMyWebsite($website,$request) ) return redirect()->back();
+
         $article = ArticleModel::where(["id"=>$articleId,"id_1"=>$websiteId])->first();
+
         if($article == null){
             return redirect()->route("admin.home");
         }
@@ -177,7 +187,11 @@ class SiteAdminController extends Controller{
      * @param int $websiteId l'id du site
      * @param int $articleId l'id de l'article
      */
-    public function seeComments($websiteId,$articleId){
+    public function seeComments(string $websiteId,int $articleId,Request $request){
+        $website = Website::where(["id" => $websiteId])->first();
+
+        if($website == null || !$this->isMyWebsite($website,$request) ) return redirect()->back();
+
         $article = ArticleModel::where(["id"=>$articleId,"id_1"=>$websiteId])->first();
         if($article == null){
             return redirect()->route("admin.home");
@@ -196,5 +210,13 @@ class SiteAdminController extends Controller{
      */
     private function formatWebsiteName(string $websiteName):string{
         return Str::snake($websiteName,"-");
+    }
+
+    /**
+     * @param Website $websiteModel le site
+     * @return bool si le site passé est le site de l'utilisateur connecté
+     */
+    private function isMyWebsite(Website $websiteModel,Request $request):bool{
+        return $websiteModel->user_id == $request->session()->get("wuser")["id"];
     }
 }
