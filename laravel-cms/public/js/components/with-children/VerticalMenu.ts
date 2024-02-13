@@ -8,7 +8,7 @@ export class VerticalMenu extends Columns{
 
     public drawing(parent: HTMLElement): HTMLElement {
         const vertical= super.drawing(parent);
-        vertical.classList.add("Vertical-Menu");
+        vertical.classList.add("Vertical-Menu","menu");
 
         return vertical;
     }

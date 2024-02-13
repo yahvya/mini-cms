@@ -6,7 +6,7 @@ export class HorizontalMenu extends Rows {
     }
     drawing(parent) {
         const tag = super.drawing(parent);
-        tag.classList.add("horizontal-menu");
+        tag.classList.add("horizontal-menu", "menu");
         return tag;
     }
 }

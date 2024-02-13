@@ -9,7 +9,7 @@ export class HorizontalMenu extends Rows{
     public drawing(parent: HTMLElement): HTMLElement {
         const tag = super.drawing(parent);
 
-        tag.classList.add("horizontal-menu");
+        tag.classList.add("horizontal-menu","menu");
 
         return tag;
     }

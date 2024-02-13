@@ -20,6 +20,10 @@ document.querySelector(".validate-page").addEventListener("click", () => {
         "page-content": pageComponents.exportComponent()
     };
     if (!isArticleTemplate) {
+        if (pageLinkContainer.value.length == 0) {
+            showMessage("Veuillez fournir le lien de la page");
+            return;
+        }
         pageDatas["pageLink"] = pageLinkContainer.value;
         site.pages.push(pageDatas);
     }

@@ -1,5 +1,15 @@
 @import "./classes.css";
 
+:root{
+    --normal-size: 14px;
+    --larger-size: 20px;
+}
+
+body{
+    font-size: var(--normal-size);
+    padding: 10px;
+}
+
 /*lignes et colonnes*/
 .Line,.Column{
     gap: 30px;
@@ -14,14 +24,37 @@
 
 /*section*/
 .section{
-    border-bottom: solid 1px var(--site-section-border);
+    border-bottom: solid 1px var(--Separation-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/*menu*/
+.menu{
+    font-size: var(--larger-size);
+    margin-bottom: 40px;
+    border: solid 2px var(--Separation-color);
+    border-radius: 3px;
+    padding: 10px;
+    background-color: var(--Background);
+}
+
+.menu a:hover{
+    text-decoration: underline;
 }
 
 /*menu burger*/
+.burger-menu{
+    width: fit-content;
+    border: none;
+}
+
 .burger-menu label{
     height: 40px;
     width: 40px;
     gap: 5px;
+    cursor: pointer;
+    position: relative;
 }
 
 .burger-menu label span{
@@ -29,20 +62,37 @@
     width: 70%;
     height: 3px;
     border-radius: 5px;
-    background-color: var(--body-special-color );
+    background-color: var(--Separation-color );
+    transition: transform 0.2s;
 }
 
 #bg-menu, .burger-menu label{
     display: none;
 }
 
-@media screen and (max-width: 640px) {
-    .burger-menu .Line{
-        display: none!important;
-    }
+.burger-menu .Column{
+    display: none !important;
+}
 
-    .burger-menu label,
-    #bg-menu:checked ~ label ~ .Line{
-        display: flex !important;
-    }
+.burger-menu label,
+#bg-menu:checked ~ label ~ .Column{
+    display: flex !important;
+}
+
+#bg-menu:checked ~ label span{
+    position: absolute;
+    top: 50%;
+    left:50%;
+}
+
+#bg-menu:checked ~ label span:nth-child(2){
+    display: none;
+}
+
+#bg-menu:checked ~ label span:nth-child(1){
+    transform: translate(-50%,-50%) rotate(-40deg);
+}
+
+#bg-menu:checked ~ label span:nth-child(3){
+    transform: translate(-50%,-50%) rotate(40deg);
 }

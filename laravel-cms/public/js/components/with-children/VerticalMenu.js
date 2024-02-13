@@ -6,7 +6,7 @@ export class VerticalMenu extends Columns {
     }
     drawing(parent) {
         const vertical = super.drawing(parent);
-        vertical.classList.add("Vertical-Menu");
+        vertical.classList.add("Vertical-Menu", "menu");
         return vertical;
     }
 }
