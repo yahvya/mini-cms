@@ -11,7 +11,7 @@ pageComponent.drawing(document.querySelector(".result-container"));
 document.querySelectorAll("a").forEach((a:HTMLAnchorElement) => {
     const link:string = a.getAttribute("href");
 
-    if(link.startsWith("\/") ) a.setAttribute("href",prefix.replace("-replace-",link) )
+    if(link.startsWith("\/") ) a.setAttribute("href",prefix.replace("\/-replace-",link) )
 });
 
 

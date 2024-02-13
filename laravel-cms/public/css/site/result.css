@@ -16,10 +16,6 @@ body{
     font-family: "Roboto","Arial","sans-serif";
 }
 
-.feedback-article-zone{
-    margin-top: 50px;
-}
-
 .feedback-getter .input-container{
     padding: 0;
     margin-bottom: 20px;
@@ -46,7 +42,7 @@ body{
 
 .feedback-article-zone{
     gap: 10%;
-    margin: auto;
+    margin: 100px auto 50px;
 }
 
 .feedback-article-zone > *{
@@ -63,4 +59,22 @@ body{
 
 .articles-list ul a:hover{
     text-decoration: underline;
+}
+
+.feedbacks-list{
+    margin-bottom: 200px;
+}
+
+.feedbacks-list .comment{
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 3px;
+    border: solid 1px var(--Separation-color);
+    width: fit-content;
+    max-width: 90%;
+}
+
+.feedbacks-list .comment .title{
+    text-decoration: underline;
+    margin-bottom: 15px;
 }

@@ -67,7 +67,7 @@ class SiteController extends Controller
      * @param string $pageLink lien de la page
      */
     public function showPage(string $websiteName,string $pageLink){
-        $pageLink = "/{$pageLink}";
+        if(!str_starts_with($pageLink,"/") ) $pageLink = "/{$pageLink}";
 
         // on vérifie que le site
         $website = Website::where(["website_formatted_name" => $websiteName])->first();

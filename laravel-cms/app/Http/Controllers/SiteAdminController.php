@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ArticleModel;
+use App\Models\FeedbackModel;
 use App\Models\UserModel;
 use App\Models\Website;
 use GuzzleHttp\Psr7\Request as Psr7Request;
@@ -202,6 +203,33 @@ class SiteAdminController extends Controller{
             "websiteId"=>$websiteId,
             "articleId"=>$articleId
         ]);
+    }
+
+    /**
+     * Gère le status d'un commentaire
+     * @param int $websiteId id du site web
+     * @param int $articleId id de l'article
+     * @param int $commentId id du commentaire
+     * @param Request $request
+     */
+    public function manageFeedback(int $websiteId,int $articleId,int $commentId,Request $request){
+        $website = Website::where(["id" => $websiteId])->first();
+
+        if($website == null || !$this->isMyWebsite($website,$request) ) return redirect()->back();
+
+        $article = ArticleModel::where(["id_1" => $websiteId,"id" => $articleId])->first();
+
+        if($article == null) return redirect()->back();
+
+        $feedback = FeedbackModel::where(["id" => $commentId,"id_1" => $articleId])->first();
+
+        if($feedback !== null){
+            // on inverse le status
+            $feedback->status = !$feedback->status;
+            $feedback->save();
+        }
+
+        return redirect()->back();
     }
 
     /**

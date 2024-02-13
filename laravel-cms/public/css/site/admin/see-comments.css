@@ -22,3 +22,11 @@ body{
     color: var(--body-special-color);
     text-decoration: underline;
 }
+
+.comment .special-button{
+    display: block;
+    width: fit-content;
+    max-width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

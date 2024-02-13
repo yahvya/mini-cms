@@ -32,3 +32,15 @@
     </details>
 </div>
 
+<p class="text-upper">Commentaires des utilisateurs</p>
+
+<div class="feedbacks-list">
+    @foreach($feedbacks as $feedback)
+        @if($feedback["status"])
+            <div class="comment">
+                <p class="title">Commentaire de {{ $feedback->user_name  }}</p>
+                <p>{{ $feedback->contenu }}</p>
+            </div>
+        @endif
+    @endforeach
+</div>
