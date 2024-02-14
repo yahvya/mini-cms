@@ -136,8 +136,6 @@ export function updateHistory(){
 
                 // suppression du composant dans son parent
                 deleteChild(pageComponents,component);
-
-                console.log(pageComponents.exportComponent() );
             });
         });
 

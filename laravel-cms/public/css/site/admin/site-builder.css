@@ -8,6 +8,9 @@
 
 .history{
     gap: 20px;
+    width: fit-content !important;
+    max-width: 200px;
+    padding: 5px;
 }
 
 .history div{
