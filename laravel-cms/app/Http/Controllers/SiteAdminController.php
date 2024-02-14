@@ -180,6 +180,8 @@ class SiteAdminController extends Controller{
         if($article == null){
             return redirect()->route("admin.home");
         }
+        FeedbackModel::destroy(["id_1" => $articleId]);
+
         $article->delete();
         return redirect()->route("listeArtciles",["websiteId"=>$websiteId]);
     }
