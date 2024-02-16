@@ -37,6 +37,11 @@ class SiteAdminController extends Controller{
             "site"=>"required"
         ]);
 
+       if(Website::where(["website_name" => $site["site-name"]])->first() !== null ){
+           Session::flash("site-error","Le nom du site est déjà pris");
+           return redirect()->route("admin.new-website");
+       }
+
         $siteFolder = uniqid();
         Storage::makeDirectory("/public/{$siteFolder}");
 

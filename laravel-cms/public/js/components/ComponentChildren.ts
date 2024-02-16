@@ -55,6 +55,7 @@ export abstract class ComponentChildren extends Component{
     }
 
     public createFrom(componentsMap:Record<string, Record<string, any>>,component:Record<any, any>):Component{
+
         this.children = component.children.map((child:Record<any, any>) => Component.createComponent(componentsMap,child.componentName,child) );
 
         return this;
