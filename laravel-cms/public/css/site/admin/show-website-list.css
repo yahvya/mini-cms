@@ -1,3 +1,6 @@
+@import url("../../app/components/form.css");
+@import url("./modal.css");
+
 .websites-choose-zone{
     position: fixed;
     top: 50%;
@@ -23,8 +26,19 @@
     background-color: var(--body-up-special-color);
     width: 80%;
     margin-bottom: 30px;
+    gap: 30px;
 }
 
 .website .flex-row{
     gap: 10px;
+}
+
+@media screen and (max-width: 870px) {
+    .website{
+        flex-wrap: wrap;
+    }
+
+    .website p{
+        width: 100%;
+    }
 }

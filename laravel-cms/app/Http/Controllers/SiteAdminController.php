@@ -6,12 +6,10 @@ use App\Models\ArticleModel;
 use App\Models\FeedbackModel;
 use App\Models\UserModel;
 use App\Models\Website;
-use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use PhpParser\NodeVisitor\FirstFindingVisitor;
 
 class SiteAdminController extends Controller{
 
@@ -21,7 +19,11 @@ class SiteAdminController extends Controller{
     public function showWebsites(Request $request){
         // récupération de la liste des sites de l'utilisateur
         return view("site-manager/show-websites-list",[
-            "websites" => UserModel::where(["id" => $request->session()->get("wuser")["id"]])->first()->websites
+            "websites" => array_map(function(array $websiteDatas):array{
+                $websiteDatas["theme"] = SiteController::getWebsiteConf($websiteDatas["site_config_file_path"])["colors"];
+
+                return $websiteDatas;
+            },UserModel::where(["id" => $request->session()->get("wuser")["id"]])->first()->websites->toArray() )
         ]);
     }
 

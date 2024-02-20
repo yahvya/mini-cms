@@ -44,7 +44,7 @@ class SiteController extends Controller
         if($article === null) return redirect("/page-non-trouve");
 
         // récupération des données de configuration du site (couleurs ...)
-        $config = $this->getWebsiteConf($website->site_config_file_path);
+        $config = self::getWebsiteConf($website->site_config_file_path);
 
         if($config === null) return redirect("/page-non-trouve");
 
@@ -75,7 +75,7 @@ class SiteController extends Controller
         if($website === null) return redirect("/page-non-trouve");
 
         // récupération des données de configuration du site (couleurs ...)
-        $config = $this->getWebsiteConf($website->site_config_file_path);
+        $config = self::getWebsiteConf($website->site_config_file_path);
 
         // récupération des données de la page
         $page = null;
@@ -138,7 +138,7 @@ class SiteController extends Controller
      * @param string $confFilePath chemin du fichier de configuration
      * @return array|null la configuration sous forme de tableau ou null
      */
-    private function getWebsiteConf(string $confFilePath):array|null{
+    public static function getWebsiteConf(string $confFilePath):array|null{
         return Storage::json($confFilePath);
     }
 }

@@ -41,12 +41,14 @@ body{
 }
 
 .feedback-article-zone{
-    gap: 10%;
+    gap: 40px;
     margin: 100px auto 50px;
+    flex-wrap: wrap;
 }
 
 .feedback-article-zone > *{
-    width: 500px
+    width: 500px;
+    max-width: 90%;
 }
 
 .articles-list ul{

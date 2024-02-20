@@ -12,6 +12,7 @@
 
 .modal i{
     align-self: flex-end;
+    cursor: pointer;
 }
 
 .modal .input-container{

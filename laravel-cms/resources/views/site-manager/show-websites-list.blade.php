@@ -15,12 +15,21 @@
         <p class="text-center title text-upper">Liste de vos sites</p>
 
         @foreach($websites as $website)
-            <div class="website flex-row justify-between">
-                <p>{{ $website->website_name }}</p>
-                <a href="{{  route("listeArtciles",["websiteId" => $website->id]) }}" target="_blank" class="special-button">Gérer les articles</a>
+            <div class="website flex-row justify-between align-center" data-theme="{{ json_encode($website["theme"])  }}" data-site="{{ $website["id"]  }}">
+                <p>{{ $website["website_name"] }}</p>
+                <div class="flex-row">
+                    <button class="special-button update-theme-button">Gérer le thème</button>
+                    <a href="{{  route("listeArtciles",["websiteId" => $website["id"]]) }}" target="_blank" class="special-button">Gérer les articles</a>
+                </div>
             </div>
         @endforeach
 
         <a href="{{route("admin.new-website")}}" class="special-button">Créer un nouveau site</a>
     </div>
+@endsection
+
+@section("bodyJs")
+    <script>
+        var token = "{{csrf_token()}}"
+    </script>
 @endsection
