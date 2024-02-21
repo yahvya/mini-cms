@@ -36,6 +36,7 @@ Route::prefix("/admin")->middleware(AuthMiddleware::class)->group(function(){
     Route::post("/Mon-site",[SiteAdminController::class,"validateSite"])->name("mon-site");
     Route::post("/nouveau-article/{websiteId}",[SiteAdminController:: class,"validateNewArticle"])->name("validateNewArticle")->where([
         "websiteId" => "[0-9]+"]);
+    Route::post("/theme-mise-a-jour",[SiteAdminController::class,"updateTheme"])->name("admin.site.update-theme");
     Route::get("/liste-articles/{websiteId}",[SiteAdminController::class, "listArticles"])->name("listeArtciles")->where([
         "websiteId" => "[0-9]+"]);
     Route::get("/supprimer/{websiteId}/{articleId}",[SiteAdminController::class,"deleteArticle"])->name("deleteArticle")->where([

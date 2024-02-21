@@ -1,16 +1,38 @@
 declare var token:string;
+declare var changeThemeRoute:string;
 
 // ajout d'animation smooth
 smoothAppearOn([".website"]);
 
 // ajout de l'évenement de mise à jour du thème
 document.querySelectorAll(".website").forEach((website:Element) => {
-    const themeData:Record<string, string> = JSON.parse(website.getAttribute("data-theme")! );
+    let themeData:Record<string, string> = JSON.parse(website.getAttribute("data-theme")! );
     const websiteId:number = parseInt(website.getAttribute("data-site")!);
 
     website.querySelector(".update-theme-button")!.addEventListener("click",() => {
-        showThemeModal(themeData,websiteId,() => {
+        showThemeModal(themeData,websiteId,(formModal:HTMLFormElement) => {
+            // envoi de la modification de thème
+            const options = {
+                method: "POST",
+                body: new FormData(formModal)
+            };
 
+            fetch(changeThemeRoute,options)
+                .then(response => response.json() )
+                .then(data => {
+                    token = data.nextToken;
+                    themeData = data.newThemeConfig;
+
+                    formModal.animate({opacity: 0}).addEventListener("finish",() => {
+                        formModal.remove();
+                    });
+
+                    alert("theme mis à jour");
+                })
+                .catch(err => {
+                    console.log(err)
+                    alert("Une erreur s'est produite, veuillez recharger la page")
+                });
         });
     });
 
@@ -30,6 +52,8 @@ function showThemeModal(themeData:Record<string, string>,websiteId:number,toDoOn
             <i class="fa-solid fa-xmark"></i>
             <p class="text-center">Modifier le thème</p>
             <div class="content"></div>
+            <input type="hidden" name="website-id" value="${websiteId}">
+            <input type="hidden" name="_token" value="${token}">
             <button class="special-button filled-one" style="--width: 200px">Créer</button>
         `;
 
@@ -55,6 +79,7 @@ function showThemeModal(themeData:Record<string, string>,websiteId:number,toDoOn
 
     formModal.addEventListener("submit",(e) => {
         e.preventDefault();
+        toDoOnSubmit(formModal);
     });
 
     document.body.append(formModal);

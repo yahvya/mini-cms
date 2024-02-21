@@ -104,6 +104,10 @@ div:has(#page){
     max-width: 90%;
 }
 
+.burger-menu .Column{
+    padding: 50px;
+}
+
 #page:not(.preview) *{
     border: solid 1px var(--body-special-color);
 }

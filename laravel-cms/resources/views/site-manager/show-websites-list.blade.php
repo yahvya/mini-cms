@@ -30,6 +30,7 @@
 
 @section("bodyJs")
     <script>
-        var token = "{{csrf_token()}}"
+        var token = "{{csrf_token()}}";
+        var changeThemeRoute = "{{ route("admin.site.update-theme") }}";
     </script>
 @endsection

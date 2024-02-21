@@ -242,6 +242,42 @@ class SiteAdminController extends Controller{
     }
 
     /**
+     * met à jour le thème d'un site
+     * @return void
+     */
+    public function updateTheme(Request $request){
+        $datas = $request->validate([
+            "website-id" => "required",
+            "textColor" => "required",
+            "Background" => "required",
+            "Separation-color" => "required"
+        ]);
+
+        // recherche du site et récupération de la configuration
+        $website = Website::where(["id"=> $datas["website-id"]])->first();
+
+        if($website == null || !$this->isMyWebsite($website,$request) )
+            return redirect()->route("admin.home");
+
+        $config = SiteController::getWebsiteConf($website->site_config_file_path);
+
+        if($config == null) return redirect()->route("admin.home");
+
+        $config["colors"] = [
+            "textColor" => $datas["textColor"],
+            "Background" => $datas["Background"],
+            "Separation-color" => $datas["Separation-color"]
+        ];
+
+        Storage::put($website->site_config_file_path,json_encode($config,JSON_PRETTY_PRINT) );
+
+        return response()->json([
+            "nextToken" => csrf_token(),
+            "newThemeConfig" => $config["colors"]
+        ]);
+    }
+
+    /**
      * Formate le nom du site fourni
      * @param string $websiteName nom du site
      * @return string le nom du site formaté
